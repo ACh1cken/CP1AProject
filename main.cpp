@@ -104,60 +104,9 @@ do{
 
 }
 
-void add_passenger()
-{
-  /*void get_data(char firstname,char lastname,char address, char reservation_no,char current,char dest)
- {
-    cout<<"\n\n        -------------------Please enter the required information for passenger number-------------------"<<endl;
-    cout<<"\n\n\nEnter the firstname of passenger: ";
-    cin>>firstname;
-    cout<<"Enter the lastname of passenger: ";
-    cin>>lastname;
-    cout<<"Enter address of passenger:  ";
-    cin>> address;
-    cout<<"Enter the reservation no. of ticket: ";
-    cin>> reservation_no;
-    cout<<"Please enter the passenger current location (IN CAPITAL LETTERS ONLY):  ";
-    cin,current;
-    cout<<"Please enter the passenger destination (IN CAPITAL LETTERS ONLY):  ";
-    cin,dest;
-    cout<<endl<<endl;
- }*/
-
-/*void display_data(char firstname,char lastname,char address, char reservation_no,char current,char dest)
+void add_passenger(char *firstname,char *lastname,char *address,char *reservation_no,char *current,char *dest)
 {
 
-    cout<<"Your E-Ticket is :"<<endl;
-    cout<<"                           AIRLINE TICKET                                 "<<endl;
-    cout<<"|Ticket No.\tA";
-    cout<<"\t\t\t\tReference No.";
-    cout<<"\t  "<<endl;
-    cout<<"|_________________________________________________________________________"<<endl;
-    cout<<"|Reservation No. :"<<reservation_no<<"                                    "<<endl; //auto display
-    cout<<"|_________________________________________________________________________"<<endl;
-    cout<<"|Passenger Information :                                                  "<<endl;
-    cout<<"|Name :"<<lastname<<"\t"<<firstname<<"                                     "<<endl;
-    cout<<"|                                                                         "<<endl;
-    cout<<"|Address :"<<address<<"                                                   "<<endl;
-    cout<<"|_________________________________________________________________________"<<endl;
-    cout<<"|flight Information :                                                     "<<endl;
-    cout<<"|Date:                                                                    "<<endl; //date
-    cout<<"|International/Local:                                                     "<<endl; //auto display from client
-    cout<<"|_________________________________________________________________________"<<endl;
-    cout<<"|Depart :"<<current<<"                                                    "<<endl;
-    cout<<"|Arrive :"<<dest<<"                                                       "<<endl;
-    cout<<"|*BAGGAGE allowed 40 Kilos                                                "<<endl;
-    cout<<"|*contact Airline to Confirm baggage allowance                            "<<endl;
-    cout<<"|_________________________________________________________________________"<<endl;
-}
-*/
-    char firstname[100];
-   char lastname[100];
-   char address[255];
-    char current[100];
-    char dest[100];
-    char reservation_no[100];
-   // get_data(firstname, lastname, address, reservation_no, current, dest);
     cout<<"\n\n        -------------------Please enter the required information for passenger number-------------------"<<endl;
     cout<<"\n\n\nEnter the firstname of passenger: ";
     cin>>firstname;
@@ -172,7 +121,10 @@ void add_passenger()
     cout<<"Please enter the passenger destination (IN CAPITAL LETTERS ONLY):  ";
     cin>>dest;
     cout<<endl<<endl;
-    //display_data(firstname, lastname, address, reservation_no, current, dest);
+
+}
+void display_Eticket(char *firstname,char *lastname,char *address,char *reservation_no,char *current,char *dest)
+{
      cout<<"Your E-Ticket is :"<<endl;
     cout<<"                           AIRLINE TICKET                                 "<<endl;
     cout<<"|Ticket No.\tA";
@@ -198,12 +150,21 @@ void add_passenger()
 }
 
 
+
 int main(){
 
 
     //Logo();
     cout <<"Test";
     //MainMenu();
+    char firstname[100];
+       char lastname[100];
+       char address[255];
+        char current[100];
+        char dest[100];
+        char reservation_no[100];
 
+        add_passenger(firstname, lastname, address, reservation_no, current, dest);
+        display_Eticket(firstname, lastname, address, reservation_no, current, dest);
     return 0;
 }
