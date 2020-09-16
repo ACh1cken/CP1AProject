@@ -35,11 +35,11 @@ class Passenger
        void display_Eticket(char *firstname,char *lastname,char *reservation_no,char *current,char *dest);
 };
 
-class delete_passenger : public passenger {   
+class cancel_booking : public passenger {   
     public:
         char reservation_no;
         char d_reservation_no;
-        delete_passenger(char *firstname,char *lastname,char *reservation_no,char *current,char *dest){
+        cancel_booking (char *firstname,char *lastname,char *reservation_no,char *current,char *dest){
             cout << "Enter the reservation number that you want to delete: ";
             cin >> d_reservation_no;
             
