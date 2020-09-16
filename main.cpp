@@ -1,6 +1,15 @@
 #include <iostream>
 #include<fstream>
 using namespace std;
+//class Passenger{
+    protected: 
+    string name;
+    string destination;
+    string arrivaltime;
+    string depaturetime;
+    //placeholder class
+
+};
 
 void Logo(){
     cout << R"(
