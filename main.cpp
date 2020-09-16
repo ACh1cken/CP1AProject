@@ -145,7 +145,26 @@ void display_Eticket(char *firstname,char *lastname,char *reservation_no,char *c
     cout<<"|_________________________________________________________________________"<<endl;
 }
 
-
+void delete_passenger(char *firstname,char *lastname,char *reservation_no,char *current,char *dest){
+    char d_reservation_no;
+    cout << "Enter the reservation number of passenger that you want to delete: ";
+    cin >> d_reservation_no;
+    
+    if (d_reservation_no == reservation_no){
+        clean(char *firstname,char *lastname,char *reservation_no,char *current,char *dest);
+        cout << "The data of the passenger has been deleted" << endl; 
+    }
+    else{
+        cout << "It is an invalid reservation number!";
+    }
+    
+void clean(char *firstname,char *lastname,char *reservation_no,char *current,char *dest){
+    firstname = "";
+    lastname = "";
+    reservation_no = "";
+    current = "";
+    dest = "";
+}
 
 int main(){
 
@@ -161,5 +180,7 @@ int main(){
 
         add_passenger(firstname, lastname, reservation_no, current, dest);
         display_Eticket(firstname, lastname, reservation_no, current, dest);
+        delete_passenger(firstname, lastname, reservation_no, current, dest);
+        clean(firstname, lastname, reservation_no, current, dest);
     return 0;
 }
