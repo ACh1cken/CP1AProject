@@ -37,7 +37,7 @@ void MainMenu(){
     }while(choice == 'Y' | 'y' );
 }
 
-void modify(Passanger &i){
+void modify(Passenger &i){
 int choice;
 string newname;
 int newarrivaltime;
@@ -53,28 +53,28 @@ cout<< "4) modify your depature time"<<endl;
 
 cout<< " Enter the number you want to modify."<<endl;
 cin>>choice;
-if(choice<4 && choice>=1){
-do{
+if(choice<=4 && choice>=1){
+
         switch(choice)
         {
         case 1 :
                 cout<<"Enter your new name"<<end;
                 cin>>newname;
-                i.Name = newname;
+                i.name = newname;
                 cout<<"new name updated !"<<endl;;
 
                 break;
         case 2 :
                 cout<<"Enter your new destination"<<end;
                 cin>>newdestination;
-                i.Destination = newdestination;
+                i.destination = newdestination;
 
                 cout<<"new destination updated"<<endl;
                 break;
         case 3 :
                 cout<<"Enter your new arrival time"<<endl;
                 cin>>newarrivaltime;
-                i.ArrivalTime = newarrivaltime;
+                i.arrivaltime = newarrivaltime;
                 cout<<"new arrival time !"<<endl;;
 
                 break;
@@ -82,7 +82,7 @@ do{
         case 4 :
                 cout<<"Enter your new departure time"<<endl;
                 cin>>newdepaturetime;
-                i.DepatureTime = newdepaturetime;
+                i.depaturetime = newdepaturetime;
 
                 cout<<"new name departure time updated !"<<endl;;
 
@@ -94,7 +94,7 @@ do{
 
 
 
-}while(choice<4 && choice>=1);
+
 }else{
         cout<<"Enter number from 1 to 4 only"<<endl;
 
