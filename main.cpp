@@ -2,7 +2,7 @@
 #include<fstream>
 using namespace std;
 /*class Passenger{
-    protected: 
+    protected:
     string name;
     string destination;
     string arrivaltime;
@@ -53,7 +53,7 @@ cout<< "4) modify your depature time"<<endl;
 
 cout<< " Enter the number you want to modify."<<endl;
 cin>>choice;
-
+if(choice<4 && choice>=1){
 do{
         switch(choice)
         {
@@ -95,6 +95,10 @@ do{
 
 
 }while(choice<4 && choice>=1);
+}else{
+        cout<<"Enter number from 1 to 4 only"<<endl;
+
+        }
 
 
 
