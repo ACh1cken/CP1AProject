@@ -31,6 +31,11 @@ __  _                                                                           
 class Passenger
 {
    public:
+        char firstname[100];
+        char lastname[100];
+        char current[100];
+        char dest[100];
+        char reservation_no[100];
        void add_passenger(char *firstname,char *lastname,char *reservation_no,char *current,char *dest);
        void display_Eticket(char *firstname,char *lastname,char *reservation_no,char *current,char *dest);
 };
@@ -226,8 +231,8 @@ int main(){
          char dest[100];
          char reservation_no[100];
          Passenger obj1;
-         obj1.add_passenger(firstname,lastname,reservation_no,current,dest);
-         obj1.display_Eticket(firstname,lastname,reservation_no,current,dest);
+         obj1.add_passenger(obj1.firstname,obj1.lastname,obj1.reservation_no,obj1.current,obj1.dest);
+         obj1.display_Eticket(obj1.firstname,obj1.lastname,obj1.reservation_no,obj1.current,obj1.dest);
         delete_passenger(firstname, lastname, reservation_no, current, dest);
         clean(firstname, lastname, reservation_no, current, dest);
     return 0;
