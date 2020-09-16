@@ -145,6 +145,68 @@ void display_Eticket(char *firstname,char *lastname,char *reservation_no,char *c
     cout<<"|_________________________________________________________________________"<<endl;
 }
 
+void delete_passenger(char *firstname,char *lastname,char *reservation_no,char *current,char *dest){
+    char d_reservation_no;
+    cout << "Enter the reservation number of passenger that you want to delete: ";
+    cin >> d_reservation_no;
+    
+    if (d_reservation_no == reservation_no){
+        clean(char *firstname,char *lastname,char *reservation_no,char *current,char *dest);
+        cout << "The data of the passenger has been deleted" << endl; 
+    }
+    else{
+        cout << "It is an invalid reservation number!";
+    }
+    
+void clean(char *firstname,char *lastname,char *reservation_no,char *current,char *dest){
+    firstname = "";
+    lastname = "";
+    reservation_no = "";
+    current = "";
+    dest = "";
+}
+
+
+void displayPrintData(){ //test function for file management
+    string passengerID;
+    string passengerName = "test";
+    string arrivaltime = "123";
+    string depaturetime = "123";
+
+    cout << R"(======================================================)"<<endl;
+    cout << "Passenger ID : "<< passengerID <<endl<<"Passenger Name : " << passengerName <<endl;
+    cout << "Arrival Time is :"<< arrivaltime <<endl<<"Depature Time is: " << depaturetime <<endl;
+    cout << R"(======================================================)"<<endl;
+    ofstream outputfile;
+    outputfile.open("output.txt",ios::out |  ios::trunc);
+    outputfile << "Test\n";
+    outputfile << R"(======================================================)"<<endl;
+    outputfile << "Passenger ID : "<< passengerID <<endl<<"Passenger Name : " << passengerName <<endl;
+    outputfile << "Arrival Time is :"<< arrivaltime <<endl<<"Depature Time is: " << depaturetime <<endl;
+    outputfile << R"(======================================================)"<<endl;
+    outputfile.close();
+
+    
+    };
+
+    
+void mainMenu(){ //Main menu 
+    string x;
+    ifstream inFile;
+
+    inFile.open("mainmenu.txt");
+    if (!inFile) {
+        cout << "Unable to open file";
+        exit(1); // terminate with error
+    }
+
+    while (getline(inFile,x)) {
+        cout << x << endl ;
+    }
+    inFile.close();
+    
+};
+
 
 
 int main(){
@@ -161,5 +223,7 @@ int main(){
 
         add_passenger(firstname, lastname, reservation_no, current, dest);
         display_Eticket(firstname, lastname, reservation_no, current, dest);
+        delete_passenger(firstname, lastname, reservation_no, current, dest);
+        clean(firstname, lastname, reservation_no, current, dest);
     return 0;
 }
