@@ -37,14 +37,13 @@ class Passenger
 
 class cancel_booking : public passenger {   
     public:
-        char reservation_no;
-        char d_reservation_no;
+        char *d_reservation_no;
         cancel_booking (char *firstname,char *lastname,char *reservation_no,char *current,char *dest){
             cout << "Enter the reservation number that you want to delete: ";
             cin >> d_reservation_no;
             
             if (d_reservation_no == reservation_no){
-                clean(char *firstname,char *lastname,char *reservation_no,char *current,char *dest);
+                clean(char firstname,char lastname,char reservation_no,char current,char dest);
             }
             else{
                 cout << "It is an invalid reservation number!";
