@@ -104,7 +104,7 @@ do{
 
 }
 
-void add_passenger(char *firstname,char *lastname,char *address,char *reservation_no,char *current,char *dest)
+void add_passenger(char *firstname,char *lastname,char *reservation_no,char *current,char *dest)
 {
 
     cout<<"\n\n        -------------------Please enter the required information for passenger number-------------------"<<endl;
@@ -112,8 +112,6 @@ void add_passenger(char *firstname,char *lastname,char *address,char *reservatio
     cin>>firstname;
     cout<<"Enter the lastname of passenger: ";
     cin>>lastname;
-    cout<<"Enter address of passenger:  ";
-    cin>> address;
     cout<<"Enter the reservation no. of ticket: ";
     cin>> reservation_no;
     cout<<"Please enter the passenger current location (IN CAPITAL LETTERS ONLY):  ";
@@ -123,7 +121,7 @@ void add_passenger(char *firstname,char *lastname,char *address,char *reservatio
     cout<<endl<<endl;
 
 }
-void display_Eticket(char *firstname,char *lastname,char *address,char *reservation_no,char *current,char *dest)
+void display_Eticket(char *firstname,char *lastname,char *reservation_no,char *current,char *dest)
 {
      cout<<"Your E-Ticket is :"<<endl;
     cout<<"                           AIRLINE TICKET                                 "<<endl;
@@ -135,8 +133,6 @@ void display_Eticket(char *firstname,char *lastname,char *address,char *reservat
     cout<<"|_________________________________________________________________________"<<endl;
     cout<<"|Passenger Information :                                                  "<<endl;
     cout<<"|Name :"<<lastname<<"\t"<<firstname<<"                                     "<<endl;
-    cout<<"|                                                                         "<<endl;
-    cout<<"|Address :"<<address<<"                                                   "<<endl;
     cout<<"|_________________________________________________________________________"<<endl;
     cout<<"|flight Information :                                                     "<<endl;
     cout<<"|Date:                                                                    "<<endl; //date
@@ -159,12 +155,11 @@ int main(){
     //MainMenu();
     char firstname[100];
        char lastname[100];
-       char address[255];
         char current[100];
         char dest[100];
         char reservation_no[100];
 
-        add_passenger(firstname, lastname, address, reservation_no, current, dest);
-        display_Eticket(firstname, lastname, address, reservation_no, current, dest);
+        add_passenger(firstname, lastname, reservation_no, current, dest);
+        display_Eticket(firstname, lastname, reservation_no, current, dest);
     return 0;
 }
