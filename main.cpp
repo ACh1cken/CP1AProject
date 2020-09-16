@@ -189,6 +189,23 @@ void displayPrintData(){ //test function for file management
     
     };
 
+    
+void mainMenu(){ //Main menu 
+    string x;
+    ifstream inFile;
+
+    inFile.open("mainmenu.txt");
+    if (!inFile) {
+        cout << "Unable to open file";
+        exit(1); // terminate with error
+    }
+
+    while (getline(inFile,x)) {
+        cout << x << endl ;
+    }
+    inFile.close();
+    
+};
 
 
 
