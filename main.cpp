@@ -166,6 +166,32 @@ void clean(char *firstname,char *lastname,char *reservation_no,char *current,cha
     dest = "";
 }
 
+
+void displayPrintData(){ //test function for file management
+    string passengerID;
+    string passengerName = "test";
+    string arrivaltime = "123";
+    string depaturetime = "123";
+
+    cout << R"(======================================================)"<<endl;
+    cout << "Passenger ID : "<< passengerID <<endl<<"Passenger Name : " << passengerName <<endl;
+    cout << "Arrival Time is :"<< arrivaltime <<endl<<"Depature Time is: " << depaturetime <<endl;
+    cout << R"(======================================================)"<<endl;
+    ofstream outputfile;
+    outputfile.open("output.txt",ios::out |  ios::trunc);
+    outputfile << "Test\n";
+    outputfile << R"(======================================================)"<<endl;
+    outputfile << "Passenger ID : "<< passengerID <<endl<<"Passenger Name : " << passengerName <<endl;
+    outputfile << "Arrival Time is :"<< arrivaltime <<endl<<"Depature Time is: " << depaturetime <<endl;
+    outputfile << R"(======================================================)"<<endl;
+    outputfile.close();
+
+    
+    };
+
+
+
+
 int main(){
 
 
