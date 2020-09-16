@@ -31,14 +31,35 @@ __  _                                                                           
 class Passenger
 {
    public:
-        char firstname[100];
-        char lastname[100];
-        char current[100];
-        char dest[100];
-        char reservation_no[100];
        void add_passenger(char *firstname,char *lastname,char *reservation_no,char *current,char *dest);
        void display_Eticket(char *firstname,char *lastname,char *reservation_no,char *current,char *dest);
 };
+
+class delete_passenger : public passenger {   
+    public:
+        char reservation_no;
+        char d_reservation_no;
+        delete_passenger(char *firstname,char *lastname,char *reservation_no,char *current,char *dest){
+            cout << "Enter the reservation number that you want to delete: ";
+            cin >> d_reservation_no;
+            
+            if (d_reservation_no == reservation_no){
+                clean(char *firstname,char *lastname,char *reservation_no,char *current,char *dest);
+            }
+            else{
+                cout << "It is an invalid reservation number!";
+            }
+        }
+        void clean(char *firstname,char *lastname,char *reservation_no,char *current,char *dest){
+            firstname = "";
+            lastname = "";
+            reservation_no = "";
+            current = "";
+            dest = "";
+            };
+
+};
+
 void MainMenu(){
     char choice;
     do {
@@ -155,26 +176,7 @@ void Passenger::display_Eticket(char *firstname,char *lastname,char *reservation
     cout<<"|_________________________________________________________________________"<<endl;
 }
 
-void delete_passenger(char *firstname,char *lastname,char *reservation_no,char *current,char *dest){
-    char d_reservation_no;
-    cout << "Enter the reservation number of passenger that you want to delete: ";
-    cin >> d_reservation_no;
 
-    if (d_reservation_no == reservation_no){
-        clean(char *firstname,char *lastname,char *reservation_no,char *current,char *dest);
-        cout << "The data of the passenger has been deleted" << endl;
-    }
-    else{
-        cout << "It is an invalid reservation number!";
-    }
-
-void clean(char *firstname,char *lastname,char *reservation_no,char *current,char *dest){
-    firstname = "";
-    lastname = "";
-    reservation_no = "";
-    current = "";
-    dest = "";
-}
 
 
 void displayPrintData(){ //test function for file management
@@ -225,11 +227,14 @@ int main(){
     //Logo();
     cout <<"Test";
     //MainMenu();
-
+        char firstname[100];
+        char lastname[100];
+         char current[100];
+         char dest[100];
+         char reservation_no[100];
          Passenger obj1;
-         obj1.add_passenger(obj1.firstname,obj1.lastname,obj1.reservation_no,obj1.current,obj1.dest);
-         obj1.display_Eticket(obj1.firstname,obj1.lastname,obj1.reservation_no,obj1.current,obj1.dest);
-        delete_passenger(firstname, lastname, reservation_no, current, dest);
-        clean(firstname, lastname, reservation_no, current, dest);
+         obj1.add_passenger(firstname,lastname,reservation_no,current,dest);
+         obj1.display_Eticket(firstname,lastname,reservation_no,current,dest);
+        
     return 0;
 }
