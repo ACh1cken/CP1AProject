@@ -1,7 +1,7 @@
 #include <iostream>
 #include<fstream>
 using namespace std;
-//class Passenger{
+/*class Passenger{
     protected: 
     string name;
     string destination;
@@ -9,9 +9,9 @@ using namespace std;
     string depaturetime;
     //placeholder class
 
-};
+};*/
 
-void Logo(){
+/*void Logo(){
     cout << R"(
 __  _                                                                                                       __  _
 \ `/ |                                                                                                      \ `/ |
@@ -27,7 +27,7 @@ __  _                                                                           
 
 
     )"<<endl;
-}
+}*/
 
 void MainMenu(){
     char choice;
@@ -106,9 +106,9 @@ do{
 int main(){
 
 
-    Logo();
+    //Logo();
     cout <<"Test";
-    MainMenu();
+    //MainMenu();
 
     return 0;
 }
