@@ -59,20 +59,15 @@ class cancel_booking : public passenger {
 
 };
 
-void MainMenu(){
-    char choice;
-    do {
-        cout << "Do you want to exit the program?";
-        cin >> choice;
-    }while(choice == 'Y' | 'y' );
-}
-
-void modify(Passenger &i){
+class Modify:public Passenger{
+public:
 int choice;
 string newname;
 int newarrivaltime;
 string newdestination;
 int newdepaturetime;
+
+void modifyPassenger(Passenger& i){
 
 cout<< " what do you want to modify ?"<<endl<<endl;
 
@@ -120,19 +115,22 @@ if(choice<=4 && choice>=1){
                 break;
 
         }
-
-
-
-
-
 }else{
         cout<<"Enter number from 1 to 4 only"<<endl;
-
-        }
-
-
+    }
 
 }
+};
+
+void MainMenu(){
+    char choice;
+    do {
+        cout << "Do you want to exit the program?";
+        cin >> choice;
+    }while(choice == 'Y' | 'y' );
+}
+
+
 
 void Passenger::add_passenger(char *firstname,char *lastname,char *reservation_no,char *current,char *dest)
 {
@@ -175,7 +173,30 @@ void Passenger::display_Eticket(char *firstname,char *lastname,char *reservation
     cout<<"|_________________________________________________________________________"<<endl;
 }
 
+<<<<<<< HEAD
+void delete_passenger(char *firstname,char *lastname,char *reservation_no,char *current,char *dest){
+    char d_reservation_no;
+    cout << "Enter the reservation number of passenger that you want to delete: ";
+    cin >> d_reservation_no;
 
+    if (d_reservation_no == reservation_no){
+        clean(char *firstname,char *lastname,char *reservation_no,char *current,char *dest);
+        cout << "The data of the passenger has been deleted" << endl;
+    }
+    else{
+        cout << "It is an invalid reservation number!";
+    }
+
+void clean(char *firstname,char *lastname,char *reservation_no,char *current,char *dest){
+    firstname = "";
+    lastname = "";
+    reservation_no = "";
+    current = "";
+    dest = "";
+}
+=======
+
+>>>>>>> 94c7c39f99289a7002d92531476659ff5a4e4e24
 
 
 void displayPrintData(){ //test function for file management
