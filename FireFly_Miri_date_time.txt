@@ -1,0 +1,6 @@
+5	8am	50	12pm	50	3pm	50	5pm	50
+7	8am	50	12pm	50	3pm	50	5pm	50
+10	8am	50	12pm	50	3pm	50	5pm	50
+12	8am	50	12pm	50	3pm	50	5pm	50
+15	8am	50	12pm	50	3pm	50	5pm	50
+30	8am	50	12pm	50	3pm	50	5pm	50
