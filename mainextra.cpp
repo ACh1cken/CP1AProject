@@ -8,9 +8,8 @@
 using namespace std;
 //copy and modify function from main.cpp to mainextra.cpp
 //update (name)
-//clean up if else statement(done)
 //remove repetition using functions(done)
-//search function 
+//search function （already included)
 //only display reference_no for forgot own reference no
 //delete - cancel booking
 //generate report
