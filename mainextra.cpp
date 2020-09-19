@@ -2,35 +2,48 @@
 #include<cstdlib>
 #include<string>
 #include<fstream>
+#include<windows.h>
+
 
 using namespace std;
 //copy and modify function from main.cpp to mainextra.cpp
 //update (name)
-//clean up if else statement
-//remove repetition using functions
+//clean up if else statement(done)
+//remove repetition using functions(done)
 //search function 
 //only display reference_no for forgot own reference no
 //delete - cancel booking
+//generate report
 
 class booking
 {
     public:
-    int airline_no, destination_no, confirm_book, reference_no, user_input;
-    string airline_name, destination_name,date_show,date_selected,month,time_selected,time1, time2, time3, time4, seat1, seat2, seat3, seat4, client_name;
+    static const int line_num = 6;
+    int date_[line_num];
+    int airline_no, destination_no, confirm_book, reference_no, user_input,date_selected;
+    string airline_name,time_selected,destination_name,month,client_name;
+
+    string listmonth[12] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
     void airline_select();
     void ticket_display();
-    void booking_details();
+
+    void clearconsole(){//Clear terminal
+        system("cls");
+    }
 };
 
-class location : virtual booking{
+class Location :virtual public booking{
     public : 
-
+    string time1[line_num], seat1[line_num], time2[line_num], seat2[line_num], time3[line_num], seat3[line_num], time4[line_num], seat4[line_num];
+    void fileIntoArray(string filename,string dest);
+    void booking_details(int x);
 };
 
-void booking::booking_details(){
+
+void Location::booking_details(int x){
         system("cls");
         cout << "Time available for " << date_selected << endl;
-        cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
+        cout << time1[x] << "\t" << time2[x] << "\t" << time3[x] << "\t" << time4[x] << endl;
         cout << "Choose time: ";
         cin >> time_selected;
             cout << "Enter Reference Number : ";
@@ -58,6 +71,64 @@ void booking::booking_details(){
         }      
         }
 
+
+void Location :: fileIntoArray(string filename,string dest){
+    clearconsole();
+    destination_name = dest;
+
+    ifstream file(filename);
+    if (file.is_open()){
+        int i = 0;
+        //string temp_month;
+        while(file >> date_[i] >> time1[i] >> seat1[i] >> time2[i] >> seat2[i] >> time3[i] >> seat3[i] >> time4[i] >> seat4[i]){
+            cout << date_[i] << " "<<time1[i]<<" "<<seat1[i]<<endl;;
+            i++;
+        }clearconsole();
+
+        cout << "The months available are : "<<endl;
+            for(int k = 0;k < 12; k++){
+                cout << listmonth[k]<<endl;
+            }
+            cout << "Please select desired month: ";
+            cin >> month;
+            clearconsole();
+
+        cout << "Dates available for booking are :";
+            for(int j = 0; j < line_num;j++){
+                cout << date_[j]<<"th "<<endl;
+            }
+        cout << R"("Please select desired date (without "th"): )";
+        cin >> date_selected;
+        if(date_selected == date_[0]){
+            cout << date_[0]<<endl;
+            booking_details(0);
+        }else if(date_selected == date_[1]){
+            cout << date_[1]<<endl;
+            booking_details(1);
+        }else if(date_selected == date_[2]){
+            cout << date_[2]<<endl;
+            booking_details(2);
+        }else if(date_selected == date_[3]){
+            cout << date_[3]<<endl;
+            booking_details(3);
+        }else if(date_selected == date_[4]){
+            cout << date_[4]<<endl;
+            booking_details(4);
+        }else if(date_selected == date_[5]){
+            cout << date_[5]<<endl;
+            booking_details(5);
+        }else{
+            cout << "Invalid Choice! \n"<< "You will now be sent back to the Main Menu"<<endl;
+            Sleep(2000);
+        }
+        
+    }else {
+        cout << "Unable to open file."<<endl;
+    }file.close();
+}
+
+
+
 void booking::airline_select()
 {
     cout << "In which AIRLINE you want to travel?" << endl;
@@ -73,156 +144,18 @@ void booking::airline_select()
         cin >> destination_no;
         if(destination_no == 1)
         {
-            system("cls");
-            destination_name = "Miri";
-            ifstream date_time ("AirAsia_Miri_date_time.txt");
-            if (date_time.is_open())
-            {
-                cout << "January\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOptober\nNovember\nDecember" << endl;
-                cout << "Select month: " ;
-                cin >> month;
-                system("cls");
-                while(date_time >> date_show >> time1 >> seat1 >> time2 >> seat2 >> time3 >> seat3 >> time4 >> seat4)
-                {
-                    cout << date_show << endl;
-                }
-                cout << "Choose date: ";
-                cin >> date_selected;
-
-                if(date_selected == "6")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "7")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "10")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "12")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "15")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "20")
-                {
-                    booking_details();
-                }
-                else
-                {
-                    system("cls");
-                    cout << "Invalid Choice!";
-                }
-                date_time.close();
-            }
-            else cout << "Unable to open file";
-
+            Location A_Miri;
+            A_Miri.fileIntoArray("AirAsia_Miri_date_time.txt","Miri");
         }
         else if(destination_no == 2)
         {
-            system("cls");
-            destination_name = "Sarawak";
-            ifstream date_time ("AirAsia_Sarawak_date_time.txt");
-            if (date_time.is_open())
-            {
-                cout << "January\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOptober\nNovember\nDecember" << endl;
-                cout << "Select month: " ;
-                cin >> month;
-                system("cls");
-                while(date_time >> date_show >> time1 >> seat1 >> time2 >> seat2 >> time3 >> seat3 >> time4 >> seat4)
-                {
-                    cout << date_show << endl;
-                }
-                cout << "Choose date: ";
-                cin >> date_selected;
-                if(date_selected == "1")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "5")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "10")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "12")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "15")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "25")
-                {
-                    booking_details();
-                }
-                else
-                {
-                    system("cls");
-                    cout << "Invalid Choice!";
-                }
-                date_time.close();
-            }
-            else cout << "Unable to open file";
+            Location A_Sarawak;
+            A_Sarawak.fileIntoArray("AirAsia_Sarawak_date_time.txt","Sarawak");
         }
         else if(destination_no == 3)
         {
-            system("cls");
-            destination_name = "Sabah";
-            ifstream date_time ("AirAsia_Sabah_date_time.txt");
-            if (date_time.is_open())
-            {
-                 cout << "January\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOptober\nNovember\nDecember" << endl;
-                cout << "Select month: " ;
-                cin >> month;
-                system("cls");
-                while(date_time >> date_show >> time1 >> seat1 >> time2 >> seat2 >> time3 >> seat3 >> time4 >> seat4)
-                {
-                    cout << date_show << endl;
-                }
-
-                cout << "Choose date: ";
-                cin >> date_selected;
-                if(date_selected == "1")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "3")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "10")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "12")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "15")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "30")
-                {
-                    booking_details();
-                }
-                else
-                {
-                    system("cls");
-                    cout << "Invalid Choice!";
-                }
-                date_time.close();
-            }
-            else cout << "Unable to open file";
+            Location A_Sabah;
+            A_Sabah.fileIntoArray("AirAsia_Sabah_date_time.txt","Sabah");
         }
         else
         {
@@ -239,156 +172,18 @@ void booking::airline_select()
         cin >> destination_no;
            if(destination_no == 1)
         {
-            system("cls");
-            destination_name = "Miri";
-            ifstream date_time ("FireFly_Miri_date_time.txt");
-            if (date_time.is_open())
-            {
-                cout << "January\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOptober\nNovember\nDecember" << endl;
-                cout << "Select month: " ;
-                cin >> month;
-                system("cls");
-                while(date_time >> date_show >> time1 >> seat1 >> time2 >> seat2 >> time3 >> seat3 >> time4 >> seat4)
-                {
-                    cout << date_show << endl;
-                }
-                cout << "Choose date: ";
-                cin >> date_selected;
-                if(date_selected == "5")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "7")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "10")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "12")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "15")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "30")
-                {
-                    booking_details();
-                }
-                else
-                {
-                    system("cls");
-                    cout << "Invalid Choice!";
-                }
-                date_time.close();
-            }
-            else cout << "Unable to open file";
-
+            Location F_Miri;
+            F_Miri.fileIntoArray("FireFly_Miri_date_time.txt","Miri");
         }
         else if(destination_no == 2)
         {
-            system("cls");
-            destination_name = "Sarawak";
-            ifstream date_time ("FireFly_Sarawak_date_time.txt");
-            if (date_time.is_open())
-            {
-                cout << "January\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOptober\nNovember\nDecember" << endl;
-                cout << "Select month: " ;
-                cin >> month;
-                system("cls");
-                while(date_time >> date_show >> time1 >> seat1 >> time2 >> seat2 >> time3 >> seat3 >> time4 >> seat4)
-                {
-                    cout << date_show << endl;
-                }
-
-                cout << "Choose date: ";
-                cin >> date_selected;
-                if(date_selected == "1")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "3")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "10")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "12")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "15")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "30")
-                {
-                    booking_details();
-                }
-                else
-                {
-                    system("cls");
-                    cout << "Invalid Choice!";
-                }
-                date_time.close();
-            }
-            else cout << "Unable to open file";
+            Location F_Sarawak;
+            F_Sarawak.fileIntoArray("FireFly_Sarawak_date_time.txt","Sarawak");
         }
         else if(destination_no == 3)
         {
-            system("cls");
-            destination_name = "Sabah";
-            ifstream date_time ("FireFly_Sabah_date_time.txt");
-            if (date_time.is_open())
-            {
-                 cout << "January\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOptober\nNovember\nDecember" << endl;
-                cout << "Select month: " ;
-                cin >> month;
-                system("cls");
-                while(date_time >> date_show >> time1 >> seat1 >> time2 >> seat2 >> time3 >> seat3 >> time4 >> seat4)
-                {
-                    cout << date_show << endl;
-                }
-
-                cout << "Choose date: ";
-                cin >> date_selected;
-                if(date_selected == "1")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "3")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "10")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "12")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "15")
-                {
-                    booking_details();
-                }
-                else if(date_selected == "30")
-                {
-                    booking_details();
-                }
-                else
-                {
-                    system("cls");
-                    cout << "Invalid Choice!";
-                }
-                date_time.close();
-            }
-            else cout << "Unable to open file";
+            Location F_Sabah;
+            F_Sabah.fileIntoArray("FireFly_Sabah_date_time.txt","Sabah");
         }
     }
     else
