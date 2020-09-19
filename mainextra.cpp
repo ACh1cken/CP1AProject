@@ -4,6 +4,13 @@
 #include<fstream>
 
 using namespace std;
+//copy and modify function from main.cpp to mainextra.cpp
+//update (name)
+//clean up if else statement
+//remove repetition using functions
+//search function 
+//only display reference_no for forgot own reference no
+//delete - cancel booking
 
 class booking
 {
@@ -12,7 +19,44 @@ class booking
     string airline_name, destination_name,date_show,date_selected,month,time_selected,time1, time2, time3, time4, seat1, seat2, seat3, seat4, client_name;
     void airline_select();
     void ticket_display();
+    void booking_details();
 };
+
+class location : virtual booking{
+    public : 
+
+};
+
+void booking::booking_details(){
+        system("cls");
+        cout << "Time available for " << date_selected << endl;
+        cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
+        cout << "Choose time: ";
+        cin >> time_selected;
+            cout << "Enter Reference Number : ";
+        cin >> reference_no;
+        cout << "Enter Name: ";
+        cin >> client_name;
+        system("cls");
+        cout << "Are you sure want to book?" << endl;
+        cout << "Press (1) to confirm" << endl;
+        cout << "Press any key to exit" << endl;
+        cin >> confirm_book;
+        if(confirm_book == 1)
+        {
+            ofstream foutput;
+            ifstream finput;
+            finput.open("booking_detail.txt");
+            foutput.open("booking_detail.txt", ios::app);
+            if (finput.is_open())
+            {
+                foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
+                finput.close();
+                foutput.close();
+            }
+            else cout << "Unable to open file";
+        }      
+        }
 
 void booking::airline_select()
 {
@@ -47,189 +91,27 @@ void booking::airline_select()
 
                 if(date_selected == "6")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                    cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t"<< date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "7")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "10")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t"<< date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "12")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "15")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "20")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else
                 {
@@ -260,189 +142,27 @@ void booking::airline_select()
                 cin >> date_selected;
                 if(date_selected == "1")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t"<< date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "5")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "10")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "12")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "15")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "25")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else
                 {
@@ -473,189 +193,27 @@ void booking::airline_select()
                 cin >> date_selected;
                 if(date_selected == "1")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "3")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "10")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "12")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "15")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "30")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else
                 {
@@ -698,189 +256,27 @@ void booking::airline_select()
                 cin >> date_selected;
                 if(date_selected == "5")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "7")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "10")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "12")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "15")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "30")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else
                 {
@@ -912,189 +308,27 @@ void booking::airline_select()
                 cin >> date_selected;
                 if(date_selected == "1")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "3")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "10")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "12")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "15")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "30")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else
                 {
@@ -1125,189 +359,27 @@ void booking::airline_select()
                 cin >> date_selected;
                 if(date_selected == "1")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "3")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "10")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "12")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "15")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                    cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else if(date_selected == "30")
                 {
-                    system("cls");
-                    cout << "Time available for " << date_selected << endl;
-                    cout << time1 << "\t" << time2 << "\t" << time3 << "\t" << time4 << endl;
-                    cout << "Choose time: ";
-                    cin >> time_selected;
-                     cout << "Enter Reference Number : ";
-                    cin >> reference_no;
-                    cout << "Enter Name: ";
-                    cin >> client_name;
-                    system("cls");
-                    cout << "Are you sure want to book?" << endl;
-                    cout << "Press (1) to confirm" << endl;
-                    cout << "Press any key to exit" << endl;
-                    cin >> confirm_book;
-                    if(confirm_book == 1)
-                    {
-                        ofstream foutput;
-                        ifstream finput;
-                        finput.open("booking_detail.txt");
-                        foutput.open("booking_detail.txt", ios::app);
-                        if (finput.is_open())
-                        {
-                            foutput << reference_no << "\t" << client_name << "\t" << airline_name << "\t" << destination_name << "\t" << month << "\t" << date_selected << "\t" << time_selected << endl;
-                            finput.close();
-                            foutput.close();
-                        }
-                        else cout << "Unable to open file";
-                    }
+                    booking_details();
                 }
                 else
                 {
@@ -1394,10 +466,3 @@ int main()
     return choice;
     return 0;
 }
-//copy and modify function from main.cpp to mainextra.cpp
-//update (name)
-//clean up if else statement
-//remove repetition using functions
-//search function 
-//only display reference_no for forgot own reference no
-//delete - cancel booking
