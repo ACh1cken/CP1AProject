@@ -32,12 +32,142 @@ class booking
 };
 
 class Location :virtual public booking{
-    public : 
+    public :
     string time1[line_num], seat1[line_num], time2[line_num], seat2[line_num], time3[line_num], seat3[line_num], time4[line_num], seat4[line_num];
     void fileIntoArray(string filename,string dest);
     void booking_details(int x);
 };
 
+void edit(){
+
+
+    string newname;
+    string newairline;
+    string newlocation;
+    string newmonth;
+    int newdate;
+    string newtime;
+
+    int count =1;
+
+    int idd[9];
+    string namee[9];
+    string airlinee[9];
+    string  locationn[9];
+    string  monthh[9];
+    int  date[9];
+    string  timee[9];
+    int z;
+     int i = 0;
+     int choice;
+
+   fstream file;
+   ofstream tempfile ("tempfile.txt");
+
+   file.open("bookdetail backup.txt");
+   if(file.is_open()){
+
+    while(file>>idd[i]>>namee[i]>>airlinee[i]>>locationn[i]>>monthh[i]>>date[i]>>timee[i]){
+    i++;
+
+    }
+
+
+   }else{
+   cout<<"file not open"<<endl;
+   }
+
+
+for(int i =0;i<9;i++){
+
+    cout<<"ID : "<<idd[i]<<" "<<"Name :"<<namee[i]<<" "<<"Airline :"<<airlinee[i]<<" "<<"Location :"<<locationn[i]<<" "<<"Month :"<<monthh[i]<<" "<<"Date :"<<date[i]<<" "<<"Time :"<<timee[i]<<""<<endl;
+}
+int id;
+cout<<"Enter ID number"<<endl;
+cin>>id;
+
+for(z = 0;z<9;z++){
+    if(id == idd[z]){
+    cout<<"Welcome "<<namee[z]<<endl;
+        break;
+
+
+}}
+
+cout<<"What do you need to change ?"<<endl;
+    cout<<"Enter 1 to change name "<<endl;
+    cout<<"Enter 2 to change airline "<<endl;
+    cout<<"Enter 3 to change destination "<<endl;
+    cout<<"Enter 4 to change month "<<endl;
+    cout<<"Enter 5 to change day "<<endl;
+    cout<<"Enter 6 to change time "<<endl;
+    cin>>choice;
+
+
+
+    switch(choice){
+case 1:
+    cout<<"Enter new name "<<endl;
+    cin>>newname;
+    namee[z] = newname;
+    cout<<"New name changed !"<<endl;
+    cout<<namee[z];
+
+    break;
+case 2:
+    cout<<"Enter new airline "<<endl;
+    cin>>newairline;
+    airlinee[z] = newairline;
+    cout<<"New airline changed !"<<endl;
+
+
+    break;
+case 3:
+  cout<<"Enter new destination "<<endl;
+    cin>>newlocation;
+    locationn[z] = newlocation;
+    cout<<"New location changed !"<<endl;
+
+    break;
+case 4:
+  cout<<"Enter new month "<<endl;
+    cin>>newmonth;
+    monthh[z] = newmonth;
+    cout<<"New month changed !"<<endl;
+
+    break;
+case 5:
+  cout<<"Enter new date "<<endl;
+    cin>>newdate;
+    date[z] = newdate;
+    cout<<"New date changed !"<<endl;
+
+    break;
+case 6:
+  cout<<"Enter new time "<<endl;
+    cin>>newtime;
+    timee[z] = newtime;
+    cout<<"New time changed !"<<endl;
+
+    break;
+
+    }
+for(int i =0;i<9;i++){
+
+    cout<<"ID : "<<idd[i]<<" "<<"Name :"<<namee[i]<<" "<<"Airline :"<<airlinee[i]<<" "<<"Location :"<<locationn[i]<<" "<<"Month :"<<monthh[i]<<" "<<"Date :"<<date[i]<<" "<<"Time :"<<timee[i]<<""<<endl;
+}
+
+z=0;
+
+for(int i =0;i<9;i++){
+
+    tempfile<<idd[i]<<" "<<namee[i]<<" "<<airlinee[i]<<" "<<locationn[i]<<" "<<monthh[i]<<" "<<date[i]<<" "<<timee[i]<<""<<endl;
+}
+file.close();
+tempfile.close();
+remove("bookdetail backup.txt");
+rename("tempfile.txt","bookdetail.txt");
+}
 
 void Location::booking_details(int x){
         system("cls");
@@ -67,7 +197,7 @@ void Location::booking_details(int x){
                 foutput.close();
             }
             else cout << "Unable to open file";
-        }      
+        }
         }
 
 
@@ -120,7 +250,7 @@ void Location :: fileIntoArray(string filename,string dest){
             cout << "Invalid Choice! \n"<< "You will now be sent back to the Main Menu"<<endl;
             Sleep(2000);
         }
-        
+
     }else {
         cout << "Unable to open file."<<endl;
     }file.close();
@@ -246,6 +376,8 @@ int main()
     }
     else if(choice == 3)
     {
+        system("cls");
+        edit();
         //update booking
 
     }
