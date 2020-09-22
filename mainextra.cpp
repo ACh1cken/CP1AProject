@@ -3,7 +3,7 @@
 #include<string>
 #include<fstream>
 #include<windows.h>
-
+#include<vector>
 
 using namespace std;
 //copy and modify function from main.cpp to mainextra.cpp
@@ -26,9 +26,7 @@ class booking
     void airline_select();
     void ticket_display();
 
-    void clearconsole(){//Clear terminal
-        system("cls");
-    }
+
 };
 
 class Location :virtual public booking{
@@ -36,7 +34,25 @@ class Location :virtual public booking{
     string time1[line_num], seat1[line_num], time2[line_num], seat2[line_num], time3[line_num], seat3[line_num], time4[line_num], seat4[line_num];
     void fileIntoArray(string filename,string dest);
     void booking_details(int x);
+    ~Location(){
+        cout << "I was destroyed \n";//test
+    }
 };
+
+class Report : virtual public booking, Location{
+    public:
+    ~Report(){
+        cout <<"I blew up \n";//test
+    }
+    int airlinereportChoice,reportChoice;
+    vector <string> passenger_name;
+    int numPassenger;
+    void reportMenu();
+    void getDestReport(string x, string y,string airlineN);
+    void getMonthReport(string x, string y,string airlineN);
+    
+};
+
 
 void edit(){
 
@@ -169,13 +185,197 @@ remove("bookdetail backup.txt");
 rename("tempfile.txt","bookdetail.txt");
 }
 
+
+void clearconsole(){//Clear terminal
+    system("cls");
+}
+
+void mainmenu(){
+int choice;
+    cout << "Welcome to Malaysia Airline" << endl;
+    cout << "MAIN MENU" << endl;
+    cout << "Press '1' for BOOKING" << endl;
+    cout << "Press '2' for DISPLAY YOUR BOOKING DETAILS" << endl;
+    cout << "Press '3' for UPDATE YOUR BOOKING" << endl;
+    cout << "Press '4' for CANCEL YOUR BOOKING" << endl;
+    cout << "Press '5' to VIEW REPORT"<<endl;
+    cout << "Press '6' to EXIT the booking program"<<endl<<endl;
+    cout << "ENTER YOUR CHOICE : " ;
+    cin >> choice;
+
+    if(choice == 1)
+    {
+        system("cls");
+        booking airline;
+        airline.airline_select();
+    }
+    else if(choice == 2)
+    {
+        system("cls");
+        booking ticket;
+        ticket.ticket_display();
+    }
+    else if(choice == 3)
+    {
+        system("cls");
+        edit();
+        //update booking
+
+    }
+    else if(choice == 4)
+    {
+        //cancel booking
+    }
+    else if(choice == 5){
+        cout << "Loading Database...\n";
+        //Sleep(2000);
+        Report report1;
+        report1.reportMenu();
+    }
+    else if(choice == 6){
+        cout << "You will now exit the program...\n";
+        Sleep(2000);
+    }
+    else
+    {
+        cout << "Invalid Choice!\n";
+        Sleep(500);
+        clearconsole();
+        mainmenu();
+    }
+}
+
+void Report:: reportMenu(){
+    cout << "Please select which airline report that you want to view.\n"
+         << "1) Air Asia\n"
+         << "2) Firefly\n"
+         << "Enter your choice : \n";
+    std::cin >> airlinereportChoice;
+    if (airlinereportChoice == 1){
+        cout << "You have selected Air Asia report."<<endl<<endl;
+        cout << "Please select desired report : \n"
+             << "1) Sorted by destination.\n"
+             << "2) Sorted by month.\n"
+             << "3) Full report.\n"
+             << "4) Exit report selection."
+             << "Please enter your selection :"<<endl;
+        cin >> reportChoice ;
+        switch(reportChoice){
+            case 1 : 
+            cout << "Miri:"<<endl;
+            cout << "======================================================================\n";
+            getDestReport("booking_detail.txt","Miri","AirAsia");
+            cout << "Sabah: "<<endl;
+            cout << "======================================================================\n";
+            getDestReport("booking_detail.txt","Sabah","AirAsia");
+            cout << "Sarawak: "<<endl;
+            cout << "======================================================================\n";
+            getDestReport("booking_detail.txt","Sarawak","AirAsia");
+            break;
+            
+            case 2:
+            for (int cx = 0;cx < 12; cx++){
+                getMonthReport("booking_detail.txt",listmonth[cx],"AirAsia");
+            }
+            break;
+
+            case 3 :  reportMenu();
+            default : mainmenu();
+            break;
+        }
+
+       // getDestReport();
+    }
+      else if (airlinereportChoice == 2){
+        cout << "You have selected FireFly report."<<endl<<endl;
+        cout << "Please select desired report : \n"
+             << "1) Sorted by destination.\n"
+             << "2) Sorted by month.\n"
+             << "3) Full report.\n"
+             << "4) Exit report selection."
+             << "Please enter your selection :"<<endl;
+        cin >> reportChoice ;
+        switch(reportChoice){
+            case 1 : 
+            cout << "Miri:"<<endl;
+            cout << "======================================================================\n";
+            getDestReport("booking_detail.txt","Miri","FireFly");
+            cout << "Sabah: "<<endl;
+            cout << "======================================================================\n";
+            getDestReport("booking_detail.txt","Sabah","FireFly");
+            cout << "Sarawak: "<<endl;
+            cout << "======================================================================\n";
+            getDestReport("booking_detail.txt","Sarawak","FireFly");
+            break;
+            
+            case 2:
+            for (int cx = 0;cx < 12; cx++){
+                getMonthReport("booking_detail.txt",listmonth[cx],"FireFly");
+            }
+            break;
+
+            case 3 :  reportMenu();
+            default : mainmenu();
+            break;
+        }
+
+       // getDestReport();
+    }
+}
+
+
+void Report::getDestReport(string x,string y,string airlineN){
+    ifstream inf(x);
+    if (inf.is_open()){
+        numPassenger =0;
+        while (inf >> reference_no >> client_name >> airline_name >> destination_name >> month >>date_selected >> time_selected)
+        {
+            if (destination_name == y && airline_name == airlineN){
+                passenger_name.push_back(client_name);
+                numPassenger = numPassenger + 1;
+            }
+        }
+        
+            cout << "There is a total of "<<numPassenger<<" travelling to "<< y <<endl
+                    << "Their names are :\n";
+            for (int o = 0 ; o < numPassenger;o++){
+            cout << "Passenger number "<<o+1<<" : "<<passenger_name[o]<<endl;
+            }cout<<endl<<endl;
+            inf.close();
+    }else cout << "Unable to open file!\n"<<endl;
+
+}
+
+void Report::getMonthReport(string x, string y,string airlineN){
+    ifstream inf(x);
+    if (inf.is_open()){
+        numPassenger =0;
+        while (inf >> reference_no >> client_name >> airline_name >> destination_name >> month >>date_selected >> time_selected)
+        {
+            if (month == y && airline_name == airlineN){
+                passenger_name.push_back(client_name);
+                numPassenger = numPassenger + 1;
+            }
+        }
+        
+            cout << "There is a total of "<<numPassenger<<" travelling on "<< y <<endl
+                    << "Their names are :\n";
+            for (int o = 0 ; o < numPassenger;o++){
+            cout << "Passenger number "<<o+1<<" : "<<passenger_name[o]<<endl;
+            }cout << "======================================================================\n";
+            cout<<endl<<endl;
+            inf.close();
+        
+    }else cout << "Unable to open file!\n"<<endl;
+}
+
 void Location::booking_details(int x){
         system("cls");
         cout << "Time available for " << date_selected << endl;
         cout << time1[x] << "\t" << time2[x] << "\t" << time3[x] << "\t" << time4[x] << endl;
         cout << "Choose time: ";
         cin >> time_selected;
-            cout << "Enter Reference Number : ";
+            cout << "Please enter desired Reference Number (6 digits): ";
         cin >> reference_no;
         cout << "Enter Name: ";
         cin >> client_name;
@@ -198,8 +398,7 @@ void Location::booking_details(int x){
             }
             else cout << "Unable to open file";
         }
-        }
-
+}
 
 void Location :: fileIntoArray(string filename,string dest){
     clearconsole();
@@ -247,15 +446,15 @@ void Location :: fileIntoArray(string filename,string dest){
             cout << date_[5]<<endl;
             booking_details(5);
         }else{
-            cout << "Invalid Choice! \n"<< "You will now be sent back to the Main Menu"<<endl;
+            cout << "Invalid Choice! \n"<< "You will now be sent back to the Main Menu..."<<endl;
             Sleep(2000);
+            mainmenu();
         }
 
     }else {
         cout << "Unable to open file."<<endl;
     }file.close();
 }
-
 
 
 void booking::airline_select()
@@ -350,45 +549,9 @@ void booking::ticket_display()
         else cout << "Unable to open file";
 }
 
+
 int main()
 {
-    int choice;
-    cout << "Welcome to Malaysia Airline" << endl;
-    cout << "MAIN MENU" << endl;
-    cout << "Press '1' for BOOKING" << endl;
-    cout << "Press '2' for DISPLAY YOUR BOOKING DETAILS" << endl;
-    cout << "Press '3' for UPDATE YOUR BOOKING" << endl;
-    cout << "Press '4' for CANCEL YOUR BOOKING" << endl << endl;
-    cout << "ENTER YOUR CHOICE : " ;
-    cin >> choice;
-
-    if(choice == 1)
-    {
-        system("cls");
-        booking airline;
-        airline.airline_select();
-    }
-    else if(choice == 2)
-    {
-        system("cls");
-        booking ticket;
-        ticket.ticket_display();
-    }
-    else if(choice == 3)
-    {
-        system("cls");
-        edit();
-        //update booking
-
-    }
-    else if(choice == 4)
-    {
-        //cancel booking
-    }
-    else
-    {
-        cout << "Invalid Choice!";
-    }
-    return choice;
+    mainmenu();
     return 0;
 }
