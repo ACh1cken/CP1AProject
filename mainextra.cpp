@@ -229,6 +229,7 @@ int choice;
     else if(choice == 5){
         cout << "Loading Database...\n";
         //Sleep(2000);
+        clearconsole();
         Report report1;
         report1.reportMenu();
     }
@@ -246,36 +247,54 @@ int choice;
 }
 
 void Report:: reportMenu(){
+    string exitchoice;
     cout << "Please select which airline report that you want to view.\n"
          << "1) Air Asia\n"
          << "2) Firefly\n"
          << "Enter your choice : \n";
     std::cin >> airlinereportChoice;
+    clearconsole();
     if (airlinereportChoice == 1){
         cout << "You have selected Air Asia report."<<endl<<endl;
         cout << "Please select desired report : \n"
              << "1) Sorted by destination.\n"
              << "2) Sorted by month.\n"
              << "3) Full report.\n"
-             << "4) Exit report selection."
+             << "4) Exit report selection.\n"
              << "Please enter your selection :"<<endl;
         cin >> reportChoice ;
         switch(reportChoice){
             case 1 : 
+            clearconsole();
             cout << "Miri:"<<endl;
-            cout << "======================================================================\n";
+            cout << "==============================================\n";
             getDestReport("booking_detail.txt","Miri","AirAsia");
             cout << "Sabah: "<<endl;
-            cout << "======================================================================\n";
+            cout << "==============================================\n";
             getDestReport("booking_detail.txt","Sabah","AirAsia");
             cout << "Sarawak: "<<endl;
-            cout << "======================================================================\n";
+            cout << "==============================================\n";
             getDestReport("booking_detail.txt","Sarawak","AirAsia");
+            cout << endl<<endl
+            << "Return to Main Menu? (Y/N)\n";
+            cin >> exitchoice;
+            if (exitchoice == "Y"|| exitchoice == "y"){
+                clearconsole();
+                mainmenu();
+            }
             break;
             
             case 2:
+            clearconsole();
             for (int cx = 0;cx < 12; cx++){
                 getMonthReport("booking_detail.txt",listmonth[cx],"AirAsia");
+            }
+            cout << endl<<endl
+            << "Return to Main Menu? (Y/N)\n";
+            cin >> exitchoice;
+            if (exitchoice == "Y"|| exitchoice == "y"){
+                clearconsole();
+                mainmenu();
             }
             break;
 
@@ -287,6 +306,7 @@ void Report:: reportMenu(){
        // getDestReport();
     }
       else if (airlinereportChoice == 2){
+        clearconsole();
         cout << "You have selected FireFly report."<<endl<<endl;
         cout << "Please select desired report : \n"
              << "1) Sorted by destination.\n"
@@ -297,20 +317,36 @@ void Report:: reportMenu(){
         cin >> reportChoice ;
         switch(reportChoice){
             case 1 : 
+            clearconsole();
             cout << "Miri:"<<endl;
-            cout << "======================================================================\n";
+            cout << "==============================================\n";
             getDestReport("booking_detail.txt","Miri","FireFly");
             cout << "Sabah: "<<endl;
-            cout << "======================================================================\n";
+            cout << "==============================================\n";
             getDestReport("booking_detail.txt","Sabah","FireFly");
             cout << "Sarawak: "<<endl;
-            cout << "======================================================================\n";
+            cout << "==============================================\n";
             getDestReport("booking_detail.txt","Sarawak","FireFly");
+            cout << endl<<endl
+            << "Return to Main Menu? (Y/N)\n";
+            cin >> exitchoice;
+            if (exitchoice == "Y"|| exitchoice == "y"){
+                clearconsole();
+                mainmenu();
+            }
             break;
             
             case 2:
+            clearconsole();
             for (int cx = 0;cx < 12; cx++){
                 getMonthReport("booking_detail.txt",listmonth[cx],"FireFly");
+            }
+            cout << endl<<endl
+            << "Return to Main Menu? (Y/N)\n";
+            cin >> exitchoice;
+            if (exitchoice == "Y"|| exitchoice == "y"){
+                clearconsole();
+                mainmenu();
             }
             break;
 
@@ -326,8 +362,10 @@ void Report:: reportMenu(){
 
 void Report::getDestReport(string x,string y,string airlineN){
     ifstream inf(x);
+    string prefix;
+    string prefix1;
     if (inf.is_open()){
-        numPassenger =0;
+        numPassenger = 0;
         while (inf >> reference_no >> client_name >> airline_name >> destination_name >> month >>date_selected >> time_selected)
         {
             if (destination_name == y && airline_name == airlineN){
@@ -335,12 +373,21 @@ void Report::getDestReport(string x,string y,string airlineN){
                 numPassenger = numPassenger + 1;
             }
         }
+            if (numPassenger == 1){
+            prefix = " passenger ";
+            prefix1 = "His/Her name is ";
+            }else {prefix = " passengers ";
+            prefix1 = "Their names are ";}
         
-            cout << "There is a total of "<<numPassenger<<" travelling to "<< y <<endl
-                    << "Their names are :\n";
+            cout << "There is a total of "<<numPassenger<<prefix<<"travelling to "<< y <<"."<<endl;
+            if (numPassenger  == 0){
+                cout << "No passengers"<<endl;
+            }else {cout <<prefix1<< ":\n";}
+
             for (int o = 0 ; o < numPassenger;o++){
             cout << "Passenger number "<<o+1<<" : "<<passenger_name[o]<<endl;
             }cout<<endl<<endl;
+            passenger_name.clear();
             inf.close();
     }else cout << "Unable to open file!\n"<<endl;
 
@@ -348,6 +395,8 @@ void Report::getDestReport(string x,string y,string airlineN){
 
 void Report::getMonthReport(string x, string y,string airlineN){
     ifstream inf(x);
+    string prefix2;
+    string prefix3;
     if (inf.is_open()){
         numPassenger =0;
         while (inf >> reference_no >> client_name >> airline_name >> destination_name >> month >>date_selected >> time_selected)
@@ -357,16 +406,25 @@ void Report::getMonthReport(string x, string y,string airlineN){
                 numPassenger = numPassenger + 1;
             }
         }
-        
-            cout << "There is a total of "<<numPassenger<<" travelling on "<< y <<endl
-                    << "Their names are :\n";
+        if (numPassenger == 1){
+            prefix2 = " passenger ";
+            prefix3 = "His/Her name is ";
+        }else {prefix2 = " passengers ";
+            prefix3 = "Their names are ";}
+        if(numPassenger >= 1){
+            cout << "There is a total of "<<numPassenger<<prefix2<<"travelling on "<< y <<endl;
+            cout<< prefix3<<":\n";
             for (int o = 0 ; o < numPassenger;o++){
             cout << "Passenger number "<<o+1<<" : "<<passenger_name[o]<<endl;
-            }cout << "======================================================================\n";
-            cout<<endl<<endl;
-            inf.close();
+            }
+            }else {cout << "There is no passenger travelling on "<<y<<endl;}
+        cout << "========================================================\n";
+        cout<<endl<<endl;
+        passenger_name.clear();
+        inf.close();
         
-    }else cout << "Unable to open file!\n"<<endl;
+    }else {cout << "Unable to open file!\n"<<endl;}
+
 }
 
 void Location::booking_details(int x){
@@ -398,6 +456,7 @@ void Location::booking_details(int x){
             }
             else cout << "Unable to open file";
         }
+        
 }
 
 void Location :: fileIntoArray(string filename,string dest){
