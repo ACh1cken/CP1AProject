@@ -50,7 +50,7 @@ class Report : virtual public booking, Location{
     void reportMenu();
     void getDestReport(string x, string y,string airlineN);
     void getMonthReport(string x, string y,string airlineN);
-    
+
 };
 
 
@@ -80,7 +80,7 @@ void edit(){
    fstream file;
    ofstream tempfile ("tempfile.txt");
 
-   file.open("bookdetail backup.txt");
+   file.open("booking_detail.txt");
    if(file.is_open()){
 
     while(file>>idd[i]>>namee[i]>>airlinee[i]>>locationn[i]>>monthh[i]>>date[i]>>timee[i]){
@@ -181,8 +181,8 @@ for(int i =0;i<9;i++){
 }
 file.close();
 tempfile.close();
-remove("bookdetail backup.txt");
-rename("tempfile.txt","bookdetail.txt");
+remove("booking_detail.txt");
+rename("tempfile.txt","booking_detail.txt");
 }
 
 
@@ -264,7 +264,7 @@ void Report:: reportMenu(){
              << "Please enter your selection :"<<endl;
         cin >> reportChoice ;
         switch(reportChoice){
-            case 1 : 
+            case 1 :
             clearconsole();
             cout << "Miri:"<<endl;
             cout << "==============================================\n";
@@ -283,7 +283,7 @@ void Report:: reportMenu(){
                 mainmenu();
             }
             break;
-            
+
             case 2:
             clearconsole();
             for (int cx = 0;cx < 12; cx++){
@@ -316,7 +316,7 @@ void Report:: reportMenu(){
              << "Please enter your selection :"<<endl;
         cin >> reportChoice ;
         switch(reportChoice){
-            case 1 : 
+            case 1 :
             clearconsole();
             cout << "Miri:"<<endl;
             cout << "==============================================\n";
@@ -335,7 +335,7 @@ void Report:: reportMenu(){
                 mainmenu();
             }
             break;
-            
+
             case 2:
             clearconsole();
             for (int cx = 0;cx < 12; cx++){
@@ -378,7 +378,7 @@ void Report::getDestReport(string x,string y,string airlineN){
             prefix1 = "His/Her name is ";
             }else {prefix = " passengers ";
             prefix1 = "Their names are ";}
-        
+
             cout << "There is a total of "<<numPassenger<<prefix<<"travelling to "<< y <<"."<<endl;
             if (numPassenger  == 0){
                 cout << "No passengers"<<endl;
@@ -422,7 +422,7 @@ void Report::getMonthReport(string x, string y,string airlineN){
         cout<<endl<<endl;
         passenger_name.clear();
         inf.close();
-        
+
     }else {cout << "Unable to open file!\n"<<endl;}
 
 }
@@ -456,7 +456,7 @@ void Location::booking_details(int x){
             }
             else cout << "Unable to open file";
         }
-        
+
 }
 
 void Location :: fileIntoArray(string filename,string dest){
