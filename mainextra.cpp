@@ -4,6 +4,7 @@
 #include<fstream>
 #include<windows.h>
 #include<vector>
+#include<iomanip>
 
 using namespace std;
 //copy and modify function from main.cpp to mainextra.cpp
@@ -50,7 +51,9 @@ class Report : virtual public booking, Location{
     void reportMenu();
     void getDestReport(string x, string y,string airlineN);
     void getMonthReport(string x, string y,string airlineN);
-
+    void displayAll(string x);
+    void displayAll(string x, string y);
+    void newl();//used in table
 };
 
 
@@ -249,8 +252,10 @@ int choice;
 void Report:: reportMenu(){
     string exitchoice;
     cout << "Please select which airline report that you want to view.\n"
-         << "1) Air Asia\n"
-         << "2) Firefly\n"
+         << "1) Air Asia.\n"
+         << "2) Firefly.\n"
+         << "3) Both Air Asia and Firefly.\n\n"
+         << "Press any other keys to return to main menu.\n"
          << "Enter your choice : \n";
     std::cin >> airlinereportChoice;
     clearconsole();
@@ -298,21 +303,36 @@ void Report:: reportMenu(){
             }
             break;
 
-            case 3 :  reportMenu();
+            case 3:
+            clearconsole();
+            displayAll("AirAsia");
+            cout << endl<<endl
+            << "Return to Main Menu? (Y/N)\n";
+            cin >> exitchoice;
+            if (exitchoice == "Y"|| exitchoice == "y"){
+            clearconsole();
+            mainmenu();
+            }
+            break;
+
+            case 4: 
+             reportMenu();
+             clearconsole();
+            break;
+
             default : mainmenu();
             break;
         }
 
        // getDestReport();
-    }
-      else if (airlinereportChoice == 2){
+    }else if (airlinereportChoice == 2){
         clearconsole();
         cout << "You have selected FireFly report."<<endl<<endl;
         cout << "Please select desired report : \n"
              << "1) Sorted by destination.\n"
              << "2) Sorted by month.\n"
              << "3) Full report.\n"
-             << "4) Exit report selection."
+             << "4) Exit report selection.\n"
              << "Please enter your selection :"<<endl;
         cin >> reportChoice ;
         switch(reportChoice){
@@ -349,14 +369,39 @@ void Report:: reportMenu(){
                 mainmenu();
             }
             break;
+            
+            case 3 :
+            clearconsole();
+            displayAll("FireFly");
+            cout << endl<<endl
+            << "Return to Main Menu? (Y/N)\n";
+            cin >> exitchoice;
+            if (exitchoice == "Y"|| exitchoice == "y"){
+                clearconsole();
+                mainmenu();
+            }
+            break;
 
-            case 3 :  reportMenu();
+            case 4 :  
+            clearconsole();
+            reportMenu();
+            break;
+
             default : mainmenu();
             break;
         }
 
        // getDestReport();
-    }
+    }else if (airlinereportChoice == 3){
+        displayAll("AirAsia","FireFly");
+        cout << endl<<endl
+        << "Return to Main Menu? (Y/N)\n";
+        cin >> exitchoice;
+        if (exitchoice == "Y"|| exitchoice == "y"){
+            clearconsole();
+            mainmenu();
+        }
+    }else {mainmenu();}
 }
 
 
@@ -426,6 +471,43 @@ void Report::getMonthReport(string x, string y,string airlineN){
     }else {cout << "Unable to open file!\n"<<endl;}
 
 }
+
+void Report::newl(){
+    cout <<"+";
+    for (int i = 0 ; i<99;i++){cout << "-";}
+    cout <<"+";
+    cout << endl;
+}
+
+void Report::displayAll(string x,string y){//overloaded function
+    
+    int airline_no, destination_no, confirm_book, reference_no, user_input,date_selected;
+    string airline_name,time_selected,destination_name,month,client_name;
+    newl();
+    cout << setw(16)<<left<<"| Reference Num"<<setw(20)<<left<<"| Passenger Name"<<setw(12)<<left<<"| Airline"<<setw(16)<<left<<"| Destination"<<setw(12)<<left<<"| Month"<<setw(12)<<left<<"| Date"<<setw(10)<<left<<"| Time"<<setw(3)<<right<<"|"<<endl;
+    newl();
+    ifstream inf("booking_detail.txt");
+    while (inf >> reference_no >> client_name >> airline_name >> destination_name >> month >>date_selected >> time_selected){
+        if (airline_name == x || airline_name == y){
+        cout<<left<<"|"<<setw(14)<<right<<reference_no<<left<<" |"<<setw(18)<<right<<client_name<<left<<" |"<<setw(10)<<right<<airline_name<<left<<" |"<<setw(14)<<right<<destination_name<<left<<" |"<<setw(10)<<right<<month<<left<<" |"<<setw(10)<<right<<date_selected<<left<<" |"<<setw(10)<<right<<time_selected<<" |"<<endl; 
+        }
+    }newl();
+};
+void Report::displayAll(string x){//overloaded function
+    
+    int airline_no, destination_no, confirm_book, reference_no, user_input,date_selected;
+    string airline_name,time_selected,destination_name,month,client_name;
+    newl();
+    cout << setw(16)<<left<<"| Reference Num"<<setw(20)<<left<<"| Passenger Name"<<setw(12)<<left<<"| Airline"<<setw(16)<<left<<"| Destination"<<setw(12)<<left<<"| Month"<<setw(12)<<left<<"| Date"<<setw(10)<<left<<"| Time"<<setw(3)<<right<<"|"<<endl;
+    newl();
+    ifstream inf("booking_detail.txt");
+    while (inf >> reference_no >> client_name >> airline_name >> destination_name >> month >>date_selected >> time_selected){
+        if (airline_name == x ){
+        cout<<left<<"|"<<setw(14)<<right<<reference_no<<left<<" |"<<setw(18)<<right<<client_name<<left<<" |"<<setw(10)<<right<<airline_name<<left<<" |"<<setw(14)<<right<<destination_name<<left<<" |"<<setw(10)<<right<<month<<left<<" |"<<setw(10)<<right<<date_selected<<left<<" |"<<setw(10)<<right<<time_selected<<" |"<<endl; 
+        }
+    }newl();
+};
+
 
 void Location::booking_details(int x){
         system("cls");
