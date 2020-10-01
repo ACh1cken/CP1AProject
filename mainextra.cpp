@@ -172,7 +172,7 @@ case 6:
     break;
 
     }
-newl(135);   
+newl(135);
 for(int i =0;i<9;i++){//loop2
 
     cout<<"| "<<"ID : "<<setw(10)<<idd[i]<<" "<<"Name :"<<setw(15)<<namee[i]<<" "<<"Airline :"<<setw(15)<<airlinee[i]<<" "<<"Location :"<<setw(13)<<locationn[i]<<" "<<"Month :"<<setw(15)<<monthh[i]<<" "<<"Date :"<<setw(5)<<date[i]<<" "<<"Time :"<<setw(5)<<timee[i]<<setw(2)<<" |"<<endl;
@@ -197,15 +197,15 @@ void clearconsole(){//Clear terminal
 
 void logo(string x){
     string tmp;
-    ifstream ifs (x);    
+    ifstream ifs (x);
 	string lines = "";
-    
+
     if (ifs){
 		while (ifs.good ()){
 	    	string TempLine;
 	    	getline (ifs ,tmp);
 	    	tmp =tmp+"\n";
-	    
+
 	    	lines = lines + tmp;
 		}
 	cout << lines;
@@ -348,7 +348,7 @@ void Report:: reportMenu(){
             }
             break;
 
-            case 4: 
+            case 4:
              reportMenu();
              clearconsole();
             break;
@@ -402,7 +402,7 @@ void Report:: reportMenu(){
                 mainmenu();
             }
             break;
-            
+
             case 3 :
             clearconsole();
             displayAll("FireFly");
@@ -415,7 +415,7 @@ void Report:: reportMenu(){
             }
             break;
 
-            case 4 :  
+            case 4 :
             clearconsole();
             reportMenu();
             break;
@@ -513,7 +513,7 @@ void newl(int x){
 }
 
 void Report::displayAll(string x,string y){//overloaded function
-    
+
     int airline_no, destination_no, confirm_book, reference_no, user_input,date_selected;
     string airline_name,time_selected,destination_name,month,client_name;
     newl(99);
@@ -522,12 +522,12 @@ void Report::displayAll(string x,string y){//overloaded function
     ifstream inf("booking_detail.txt");
     while (inf >> reference_no >> client_name >> airline_name >> destination_name >> month >>date_selected >> time_selected){
         if (airline_name == x || airline_name == y){
-        cout<<left<<"|"<<setw(14)<<right<<reference_no<<left<<" |"<<setw(18)<<right<<client_name<<left<<" |"<<setw(10)<<right<<airline_name<<left<<" |"<<setw(14)<<right<<destination_name<<left<<" |"<<setw(10)<<right<<month<<left<<" |"<<setw(10)<<right<<date_selected<<left<<" |"<<setw(10)<<right<<time_selected<<" |"<<endl; 
+        cout<<left<<"|"<<setw(14)<<right<<reference_no<<left<<" |"<<setw(18)<<right<<client_name<<left<<" |"<<setw(10)<<right<<airline_name<<left<<" |"<<setw(14)<<right<<destination_name<<left<<" |"<<setw(10)<<right<<month<<left<<" |"<<setw(10)<<right<<date_selected<<left<<" |"<<setw(10)<<right<<time_selected<<" |"<<endl;
         }
     }newl(99);
 };
 void Report::displayAll(string x){//overloaded function
-    
+
     int airline_no, destination_no, confirm_book, reference_no, user_input,date_selected;
     string airline_name,time_selected,destination_name,month,client_name;
     newl(99);
@@ -536,7 +536,7 @@ void Report::displayAll(string x){//overloaded function
     ifstream inf("booking_detail.txt");
     while (inf >> reference_no >> client_name >> airline_name >> destination_name >> month >>date_selected >> time_selected){
         if (airline_name == x ){
-        cout<<left<<"|"<<setw(14)<<right<<reference_no<<left<<" |"<<setw(18)<<right<<client_name<<left<<" |"<<setw(10)<<right<<airline_name<<left<<" |"<<setw(14)<<right<<destination_name<<left<<" |"<<setw(10)<<right<<month<<left<<" |"<<setw(10)<<right<<date_selected<<left<<" |"<<setw(10)<<right<<time_selected<<" |"<<endl; 
+        cout<<left<<"|"<<setw(14)<<right<<reference_no<<left<<" |"<<setw(18)<<right<<client_name<<left<<" |"<<setw(10)<<right<<airline_name<<left<<" |"<<setw(14)<<right<<destination_name<<left<<" |"<<setw(10)<<right<<month<<left<<" |"<<setw(10)<<right<<date_selected<<left<<" |"<<setw(10)<<right<<time_selected<<" |"<<endl;
         }
     }newl(99);
 };
@@ -662,6 +662,8 @@ void booking::airline_select()
         else
         {
             cout << "Invalid Choice!";
+            system("cls");
+            mainmenu();
         }
 
     }
@@ -691,6 +693,8 @@ void booking::airline_select()
     else
     {
         cout << "Invalid Choice!";
+        system("cls");
+        mainmenu();
     }
 
 }
