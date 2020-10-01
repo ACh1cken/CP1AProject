@@ -17,16 +17,16 @@ using namespace std;
 
 class booking
 {
-    public:
+    protected:
     static const int line_num = 6;
     int date_[line_num];
     int airline_no, destination_no, confirm_book, reference_no, user_input,date_selected;
     string airline_name,time_selected,destination_name,month,client_name;
-
+    public:
     string listmonth[12] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
     void airline_select();
     void ticket_display();
-
+    void edit();
 
 };
 
@@ -53,11 +53,11 @@ class Report : virtual public booking, Location{
     void getMonthReport(string x, string y,string airlineN);
     void displayAll(string x);
     void displayAll(string x, string y);
-    void newl();//used in table
+
 };
 
-
-void edit(){
+void newl(int x);//used in table
+void booking::edit(){
 
 
     string newname;
@@ -96,11 +96,12 @@ void edit(){
    cout<<"file not open"<<endl;
    }
 
+newl(135);
+for(int i =0;i<9;i++){//loop
 
-for(int i =0;i<9;i++){
-
-    cout<<"ID : "<<idd[i]<<" "<<"Name :"<<namee[i]<<" "<<"Airline :"<<airlinee[i]<<" "<<"Location :"<<locationn[i]<<" "<<"Month :"<<monthh[i]<<" "<<"Date :"<<date[i]<<" "<<"Time :"<<timee[i]<<""<<endl;
+    cout<<"| "<<"ID : "<<setw(10)<<idd[i]<<" "<<"Name :"<<setw(15)<<namee[i]<<" "<<"Airline :"<<setw(15)<<airlinee[i]<<" "<<"Location :"<<setw(13)<<locationn[i]<<" "<<"Month :"<<setw(15)<<monthh[i]<<" "<<"Date :"<<setw(5)<<date[i]<<" "<<"Time :"<<setw(5)<<timee[i]<<setw(2)<<" |"<<endl;
 }
+newl(135);
 int id;
 cout<<"Enter ID number"<<endl;
 cin>>id;
@@ -130,7 +131,7 @@ case 1:
     cin>>newname;
     namee[z] = newname;
     cout<<"New name changed !"<<endl;
-    cout<<namee[z];
+    cout<<namee[z]<<endl;;
 
     break;
 case 2:
@@ -171,11 +172,12 @@ case 6:
     break;
 
     }
-for(int i =0;i<9;i++){
+newl(135);   
+for(int i =0;i<9;i++){//loop2
 
-    cout<<"ID : "<<idd[i]<<" "<<"Name :"<<namee[i]<<" "<<"Airline :"<<airlinee[i]<<" "<<"Location :"<<locationn[i]<<" "<<"Month :"<<monthh[i]<<" "<<"Date :"<<date[i]<<" "<<"Time :"<<timee[i]<<""<<endl;
+    cout<<"| "<<"ID : "<<setw(10)<<idd[i]<<" "<<"Name :"<<setw(15)<<namee[i]<<" "<<"Airline :"<<setw(15)<<airlinee[i]<<" "<<"Location :"<<setw(13)<<locationn[i]<<" "<<"Month :"<<setw(15)<<monthh[i]<<" "<<"Date :"<<setw(5)<<date[i]<<" "<<"Time :"<<setw(5)<<timee[i]<<setw(2)<<" |"<<endl;
 }
-
+newl(135);
 z=0;
 
 for(int i =0;i<9;i++){
@@ -193,17 +195,43 @@ void clearconsole(){//Clear terminal
     system("cls");
 }
 
+void logo(string x){
+    string tmp;
+    ifstream ifs (x);    
+	string lines = "";
+    
+    if (ifs){
+		while (ifs.good ()){
+	    	string TempLine;
+	    	getline (ifs ,tmp);
+	    	tmp =tmp+"\n";
+	    
+	    	lines = lines + tmp;
+		}
+	cout << lines;
+	}
+
+    Sleep(2000);
+    clearconsole();
+    ifs.close();
+}
+
+
+
 void mainmenu(){
 int choice;
-    cout << "Welcome to Malaysia Airline" << endl;
-    cout << "MAIN MENU" << endl;
-    cout << "Press '1' for BOOKING" << endl;
-    cout << "Press '2' for DISPLAY YOUR BOOKING DETAILS" << endl;
-    cout << "Press '3' for UPDATE YOUR BOOKING" << endl;
-    cout << "Press '4' for CANCEL YOUR BOOKING" << endl;
-    cout << "Press '5' to VIEW REPORT"<<endl;
-    cout << "Press '6' to EXIT the booking program"<<endl<<endl;
-    cout << "ENTER YOUR CHOICE : " ;
+    cout << "Welcome to Malaysia Airline Booking System.\n" << endl;
+    newl(50);
+    cout <<left<<"|"<< "\t\t    MAIN MENU" <<setw(23)<<right<<"|"<< endl;
+    newl(50);
+    cout <<left<<"| "<<setw(49)<< "Press '1' for BOOKING" <<right<<"|"<< endl;
+    cout <<left<<"| "<<setw(49)<< "Press '2' for DISPLAY YOUR BOOKING DETAILS" <<right<<"|"<< endl;
+    cout <<left<<"| "<<setw(49)<< "Press '3' for UPDATE YOUR BOOKING" <<right<<"|"<< endl;
+    cout <<left<<"| "<<setw(49)<< "Press '4' for CANCEL YOUR BOOKING" <<right<<"|"<< endl;
+    cout <<left<<"| "<<setw(49)<< "Press '5' to VIEW REPORT"<<right<<"|"<<endl;
+    cout <<left<<"| "<<setw(49)<< "Press '6' to EXIT the booking program"<<right<<"|"<<endl;
+    newl(50);
+    cout <<left<< "ENTER YOUR CHOICE : ";
     cin >> choice;
 
     if(choice == 1)
@@ -221,7 +249,8 @@ int choice;
     else if(choice == 3)
     {
         system("cls");
-        edit();
+        booking edt;
+        edt.edit();
         //update booking
 
     }
@@ -238,7 +267,9 @@ int choice;
     }
     else if(choice == 6){
         cout << "You will now exit the program...\n";
-        Sleep(2000);
+        Sleep(1250);
+        clearconsole();
+        logo("thankyou.txt");
     }
     else
     {
@@ -248,6 +279,8 @@ int choice;
         mainmenu();
     }
 }
+
+
 
 void Report:: reportMenu(){
     string exitchoice;
@@ -272,13 +305,13 @@ void Report:: reportMenu(){
             case 1 :
             clearconsole();
             cout << "Miri:"<<endl;
-            cout << "==============================================\n";
+            newl(53);
             getDestReport("booking_detail.txt","Miri","AirAsia");
             cout << "Sabah: "<<endl;
-            cout << "==============================================\n";
+            newl(53);
             getDestReport("booking_detail.txt","Sabah","AirAsia");
             cout << "Sarawak: "<<endl;
-            cout << "==============================================\n";
+            newl(53);
             getDestReport("booking_detail.txt","Sarawak","AirAsia");
             cout << endl<<endl
             << "Return to Main Menu? (Y/N)\n";
@@ -463,7 +496,7 @@ void Report::getMonthReport(string x, string y,string airlineN){
             cout << "Passenger number "<<o+1<<" : "<<passenger_name[o]<<endl;
             }
             }else {cout << "There is no passenger travelling on "<<y<<endl;}
-        cout << "========================================================\n";
+       newl(53);
         cout<<endl<<endl;
         passenger_name.clear();
         inf.close();
@@ -472,9 +505,9 @@ void Report::getMonthReport(string x, string y,string airlineN){
 
 }
 
-void Report::newl(){
+void newl(int x){
     cout <<"+";
-    for (int i = 0 ; i<99;i++){cout << "-";}
+    for (int i = 0 ; i<x;i++){cout << "-";}
     cout <<"+";
     cout << endl;
 }
@@ -483,29 +516,29 @@ void Report::displayAll(string x,string y){//overloaded function
     
     int airline_no, destination_no, confirm_book, reference_no, user_input,date_selected;
     string airline_name,time_selected,destination_name,month,client_name;
-    newl();
+    newl(99);
     cout << setw(16)<<left<<"| Reference Num"<<setw(20)<<left<<"| Passenger Name"<<setw(12)<<left<<"| Airline"<<setw(16)<<left<<"| Destination"<<setw(12)<<left<<"| Month"<<setw(12)<<left<<"| Date"<<setw(10)<<left<<"| Time"<<setw(3)<<right<<"|"<<endl;
-    newl();
+    newl(99);
     ifstream inf("booking_detail.txt");
     while (inf >> reference_no >> client_name >> airline_name >> destination_name >> month >>date_selected >> time_selected){
         if (airline_name == x || airline_name == y){
         cout<<left<<"|"<<setw(14)<<right<<reference_no<<left<<" |"<<setw(18)<<right<<client_name<<left<<" |"<<setw(10)<<right<<airline_name<<left<<" |"<<setw(14)<<right<<destination_name<<left<<" |"<<setw(10)<<right<<month<<left<<" |"<<setw(10)<<right<<date_selected<<left<<" |"<<setw(10)<<right<<time_selected<<" |"<<endl; 
         }
-    }newl();
+    }newl(99);
 };
 void Report::displayAll(string x){//overloaded function
     
     int airline_no, destination_no, confirm_book, reference_no, user_input,date_selected;
     string airline_name,time_selected,destination_name,month,client_name;
-    newl();
+    newl(99);
     cout << setw(16)<<left<<"| Reference Num"<<setw(20)<<left<<"| Passenger Name"<<setw(12)<<left<<"| Airline"<<setw(16)<<left<<"| Destination"<<setw(12)<<left<<"| Month"<<setw(12)<<left<<"| Date"<<setw(10)<<left<<"| Time"<<setw(3)<<right<<"|"<<endl;
-    newl();
+    newl(99);
     ifstream inf("booking_detail.txt");
     while (inf >> reference_no >> client_name >> airline_name >> destination_name >> month >>date_selected >> time_selected){
         if (airline_name == x ){
         cout<<left<<"|"<<setw(14)<<right<<reference_no<<left<<" |"<<setw(18)<<right<<client_name<<left<<" |"<<setw(10)<<right<<airline_name<<left<<" |"<<setw(14)<<right<<destination_name<<left<<" |"<<setw(10)<<right<<month<<left<<" |"<<setw(10)<<right<<date_selected<<left<<" |"<<setw(10)<<right<<time_selected<<" |"<<endl; 
         }
-    }newl();
+    }newl(99);
 };
 
 
@@ -693,6 +726,7 @@ void booking::ticket_display()
 
 int main()
 {
+    logo("welcome1.txt");
     mainmenu();
     return 0;
 }
