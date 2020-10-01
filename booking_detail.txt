@@ -3,7 +3,7 @@
 6547674 Rasmi AirAsia Miri December 7 12pm
 634543 Yan FireFly Miri October 15 12pm
 12345 Test Firefly Miri July 6 8am
-69347543 Abu AirAsia Miri January 6 8am
+69347543 Ali AirAsia Miri January 6 8am
 1234567 Chris FireFly Sabah January 3 8am
 123 Ali AirAsia Sabah June 30 3am
 123124 testF FireFly Miri May 10 8am

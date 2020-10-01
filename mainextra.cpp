@@ -57,16 +57,11 @@ class Report : virtual public booking, Location{
 };
 
 void newl(int x);//used in table
+void mainmenu();
 void booking::edit(){
 
-
     string newname;
-    string newairline;
-    string newlocation;
-    string newmonth;
-    int newdate;
-    string newtime;
-
+    string exitchoice;
     int count =1;
 
     int idd[9];
@@ -103,7 +98,7 @@ for(int i =0;i<9;i++){//loop
 }
 newl(135);
 int id;
-cout<<"Enter ID number"<<endl;
+cout<<"Enter Reference number"<<endl;
 cin>>id;
 
 for(z = 0;z<9;z++){
@@ -114,68 +109,16 @@ for(z = 0;z<9;z++){
 
 }}
 
-cout<<"What do you need to change ?"<<endl;
-    cout<<"Enter 1 to change name "<<endl;
-    cout<<"Enter 2 to change airline "<<endl;
-    cout<<"Enter 3 to change destination "<<endl;
-    cout<<"Enter 4 to change month "<<endl;
-    cout<<"Enter 5 to change day "<<endl;
-    cout<<"Enter 6 to change time "<<endl;
-    cin>>choice;
-
-
-
-    switch(choice){
-case 1:
     cout<<"Enter new name "<<endl;
     cin>>newname;
     namee[z] = newname;
     cout<<"New name changed !"<<endl;
     cout<<namee[z]<<endl;;
 
-    break;
-case 2:
-    cout<<"Enter new airline "<<endl;
-    cin>>newairline;
-    airlinee[z] = newairline;
-    cout<<"New airline changed !"<<endl;
-
-
-    break;
-case 3:
-  cout<<"Enter new destination "<<endl;
-    cin>>newlocation;
-    locationn[z] = newlocation;
-    cout<<"New location changed !"<<endl;
-
-    break;
-case 4:
-  cout<<"Enter new month "<<endl;
-    cin>>newmonth;
-    monthh[z] = newmonth;
-    cout<<"New month changed !"<<endl;
-
-    break;
-case 5:
-  cout<<"Enter new date "<<endl;
-    cin>>newdate;
-    date[z] = newdate;
-    cout<<"New date changed !"<<endl;
-
-    break;
-case 6:
-  cout<<"Enter new time "<<endl;
-    cin>>newtime;
-    timee[z] = newtime;
-    cout<<"New time changed !"<<endl;
-
-    break;
-
-    }
-newl(135);   
+newl(135);
 for(int i =0;i<9;i++){//loop2
 
-    cout<<"| "<<"ID : "<<setw(10)<<idd[i]<<" "<<"Name :"<<setw(15)<<namee[i]<<" "<<"Airline :"<<setw(15)<<airlinee[i]<<" "<<"Location :"<<setw(13)<<locationn[i]<<" "<<"Month :"<<setw(15)<<monthh[i]<<" "<<"Date :"<<setw(5)<<date[i]<<" "<<"Time :"<<setw(5)<<timee[i]<<setw(2)<<" |"<<endl;
+    cout<<"| "<<"Reference No : "<<setw(10)<<idd[i]<<" "<<"Name :"<<setw(15)<<namee[i]<<" "<<"Airline :"<<setw(15)<<airlinee[i]<<" "<<"Location :"<<setw(13)<<locationn[i]<<" "<<"Month :"<<setw(15)<<monthh[i]<<" "<<"Date :"<<setw(5)<<date[i]<<" "<<"Time :"<<setw(5)<<timee[i]<<setw(2)<<" |"<<endl;
 }
 newl(135);
 z=0;
@@ -188,6 +131,13 @@ file.close();
 tempfile.close();
 remove("booking_detail.txt");
 rename("tempfile.txt","booking_detail.txt");
+cout << endl<<endl
+<< "Return to Main Menu? (Y/N)\n";
+cin >> exitchoice;
+if (exitchoice == "Y"|| exitchoice == "y"){
+    system("cls");
+    mainmenu();
+}
 }
 
 
@@ -197,15 +147,15 @@ void clearconsole(){//Clear terminal
 
 void logo(string x){
     string tmp;
-    ifstream ifs (x);    
+    ifstream ifs (x);
 	string lines = "";
-    
+
     if (ifs){
 		while (ifs.good ()){
 	    	string TempLine;
 	    	getline (ifs ,tmp);
 	    	tmp =tmp+"\n";
-	    
+
 	    	lines = lines + tmp;
 		}
 	cout << lines;
@@ -273,10 +223,10 @@ int choice;
     }
     else
     {
-        cout << "Invalid Choice!\n";
+        cin.ignore();
         Sleep(500);
         clearconsole();
-        mainmenu();
+
     }
 }
 
@@ -348,7 +298,7 @@ void Report:: reportMenu(){
             }
             break;
 
-            case 4: 
+            case 4:
              reportMenu();
              clearconsole();
             break;
@@ -402,7 +352,7 @@ void Report:: reportMenu(){
                 mainmenu();
             }
             break;
-            
+
             case 3 :
             clearconsole();
             displayAll("FireFly");
@@ -415,7 +365,7 @@ void Report:: reportMenu(){
             }
             break;
 
-            case 4 :  
+            case 4 :
             clearconsole();
             reportMenu();
             break;
@@ -513,7 +463,7 @@ void newl(int x){
 }
 
 void Report::displayAll(string x,string y){//overloaded function
-    
+
     int airline_no, destination_no, confirm_book, reference_no, user_input,date_selected;
     string airline_name,time_selected,destination_name,month,client_name;
     newl(99);
@@ -522,12 +472,12 @@ void Report::displayAll(string x,string y){//overloaded function
     ifstream inf("booking_detail.txt");
     while (inf >> reference_no >> client_name >> airline_name >> destination_name >> month >>date_selected >> time_selected){
         if (airline_name == x || airline_name == y){
-        cout<<left<<"|"<<setw(14)<<right<<reference_no<<left<<" |"<<setw(18)<<right<<client_name<<left<<" |"<<setw(10)<<right<<airline_name<<left<<" |"<<setw(14)<<right<<destination_name<<left<<" |"<<setw(10)<<right<<month<<left<<" |"<<setw(10)<<right<<date_selected<<left<<" |"<<setw(10)<<right<<time_selected<<" |"<<endl; 
+        cout<<left<<"|"<<setw(14)<<right<<reference_no<<left<<" |"<<setw(18)<<right<<client_name<<left<<" |"<<setw(10)<<right<<airline_name<<left<<" |"<<setw(14)<<right<<destination_name<<left<<" |"<<setw(10)<<right<<month<<left<<" |"<<setw(10)<<right<<date_selected<<left<<" |"<<setw(10)<<right<<time_selected<<" |"<<endl;
         }
     }newl(99);
 };
 void Report::displayAll(string x){//overloaded function
-    
+
     int airline_no, destination_no, confirm_book, reference_no, user_input,date_selected;
     string airline_name,time_selected,destination_name,month,client_name;
     newl(99);
@@ -536,7 +486,7 @@ void Report::displayAll(string x){//overloaded function
     ifstream inf("booking_detail.txt");
     while (inf >> reference_no >> client_name >> airline_name >> destination_name >> month >>date_selected >> time_selected){
         if (airline_name == x ){
-        cout<<left<<"|"<<setw(14)<<right<<reference_no<<left<<" |"<<setw(18)<<right<<client_name<<left<<" |"<<setw(10)<<right<<airline_name<<left<<" |"<<setw(14)<<right<<destination_name<<left<<" |"<<setw(10)<<right<<month<<left<<" |"<<setw(10)<<right<<date_selected<<left<<" |"<<setw(10)<<right<<time_selected<<" |"<<endl; 
+        cout<<left<<"|"<<setw(14)<<right<<reference_no<<left<<" |"<<setw(18)<<right<<client_name<<left<<" |"<<setw(10)<<right<<airline_name<<left<<" |"<<setw(14)<<right<<destination_name<<left<<" |"<<setw(10)<<right<<month<<left<<" |"<<setw(10)<<right<<date_selected<<left<<" |"<<setw(10)<<right<<time_selected<<" |"<<endl;
         }
     }newl(99);
 };
@@ -548,7 +498,7 @@ void Location::booking_details(int x){
         cout << time1[x] << "\t" << time2[x] << "\t" << time3[x] << "\t" << time4[x] << endl;
         cout << "Choose time: ";
         cin >> time_selected;
-            cout << "Please enter desired Reference Number (6 digits): ";
+        cout << "Please enter desired Reference Number (6 digits): ";
         cin >> reference_no;
         cout << "Enter Name: ";
         cin >> client_name;
@@ -583,7 +533,6 @@ void Location :: fileIntoArray(string filename,string dest){
         int i = 0;
         //string temp_month;
         while(file >> date_[i] >> time1[i] >> seat1[i] >> time2[i] >> seat2[i] >> time3[i] >> seat3[i] >> time4[i] >> seat4[i]){
-            cout << date_[i] << " "<<time1[i]<<" "<<seat1[i]<<endl;;
             i++;
         }clearconsole();
 
@@ -595,7 +544,7 @@ void Location :: fileIntoArray(string filename,string dest){
             cin >> month;
             clearconsole();
 
-        cout << "Dates available for booking are :";
+        cout << "Dates available for booking are :"<<endl;
             for(int j = 0; j < line_num;j++){
                 cout << date_[j]<<"th "<<endl;
             }
@@ -662,6 +611,8 @@ void booking::airline_select()
         else
         {
             cout << "Invalid Choice!";
+            system("cls");
+            mainmenu();
         }
 
     }
@@ -691,6 +642,8 @@ void booking::airline_select()
     else
     {
         cout << "Invalid Choice!";
+        system("cls");
+        mainmenu();
     }
 
 }
