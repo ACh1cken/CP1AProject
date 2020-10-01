@@ -5,7 +5,8 @@
 #include<windows.h>
 #include<vector>
 #include<iomanip>
-
+#include<limits>
+#undef max();
 using namespace std;
 //copy and modify function from main.cpp to mainextra.cpp
 //update (name)
@@ -27,6 +28,7 @@ class booking
     void airline_select();
     void ticket_display();
     void edit();
+    void deleteUser();
 
 };
 
@@ -55,7 +57,7 @@ class Report : virtual public booking, Location{
     void displayAll(string x, string y);
 
 };
-
+void clearconsole();
 void newl(int x);//used in table
 void mainmenu();
 void booking::edit(){
@@ -140,6 +142,53 @@ if (exitchoice == "Y"|| exitchoice == "y"){
 }
 }
 
+void booking::deleteUser(){
+    clearconsole();
+    int idd[9];
+    string namee[9];
+    string airlinee[9];
+    string  locationn[9];
+    string  monthh[9];
+    int  date[9];
+    string  timee[9];
+    int i = 0;
+    int k;
+    int refno;
+    char filename[] = "booking_detail.txt";
+
+    cout<<"Enter reference number: "<<endl;
+    cin >> refno;
+    ifstream infile(filename);
+    ofstream tmpfile("JAOF.txt");
+    if (infile.is_open()){
+
+        while (infile >>idd[i]>>namee[i]>>airlinee[i]>>locationn[i]>>monthh[i]>>date[i]>>timee[i]){
+            if (refno != idd[i] ){
+                tmpfile<<idd[i]<<" "<<namee[i]<<" "<<airlinee[i]<<" "<<locationn[i]<<" "<<monthh[i]<<" "<<date[i]<<" "<<timee[i]<<""<<endl;
+                
+            }else {
+                k = i;
+                cout << "Removed user : "<<namee[k]<<endl;
+                cout << "Reference number of : "<<idd[k]<<endl;
+            }
+            i++;
+        }
+    }else {cout << "Unable to open file!\n";}
+        infile.close();
+        tmpfile.close();
+        remove(filename);
+        rename("JAOF.txt","booking_detail.txt");
+
+    string exitchoice;
+    cout << endl<<endl
+    << "Return to Main Menu? (Y/N)\n";
+    cin >> exitchoice;
+    if (exitchoice == "Y"|| exitchoice == "y"){
+    system("cls");
+    mainmenu();
+    }
+    
+}
 
 void clearconsole(){//Clear terminal
     system("cls");
@@ -184,6 +233,20 @@ int choice;
     cout <<left<< "ENTER YOUR CHOICE : ";
     cin >> choice;
 
+    while(1)
+    {
+    if(cin.fail())
+    {
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+    cout<<"You have entered wrong input"<<endl;
+    cout<<"Please enter again."<<endl;
+    cin>>choice;
+    }
+    if(!cin.fail())
+    break;
+    }
+
     if(choice == 1)
     {
         system("cls");
@@ -206,6 +269,8 @@ int choice;
     }
     else if(choice == 4)
     {
+        booking dlt;
+        dlt.deleteUser();
         //cancel booking
     }
     else if(choice == 5){
@@ -498,6 +563,16 @@ void Location::booking_details(int x){
         cout << time1[x] << "\t" << time2[x] << "\t" << time3[x] << "\t" << time4[x] << endl;
         cout << "Choose time: ";
         cin >> time_selected;
+        if (time_selected == time1[x]||time_selected == time2[x] ||time_selected == time3[x] ||time_selected == time4[x]){
+            cout << "You have entered : "<<time_selected<<endl;
+        }else{
+            cout << "Invalid input!\n";
+            cout << "You will be returned to the main menu!\n";
+            Sleep(1000);
+            clearconsole();
+            mainmenu();
+        }
+
         cout << "Please enter desired Reference Number (6 digits): ";
         cin >> reference_no;
         cout << "Enter Name: ";
@@ -531,6 +606,7 @@ void Location :: fileIntoArray(string filename,string dest){
     ifstream file(filename);
     if (file.is_open()){
         int i = 0;
+        int w;
         //string temp_month;
         while(file >> date_[i] >> time1[i] >> seat1[i] >> time2[i] >> seat2[i] >> time3[i] >> seat3[i] >> time4[i] >> seat4[i]){
             i++;
@@ -538,17 +614,39 @@ void Location :: fileIntoArray(string filename,string dest){
 
         cout << "The months available are : "<<endl;
             for(int k = 0;k < 12; k++){
-                cout << listmonth[k]<<endl;
+                cout << "("<<k+1<<")" <<listmonth[k]<<endl;
             }
             cout << "Please select desired month: ";
-            cin >> month;
+            cin >> w;
+            
+            while(1)
+            {
+            if(cin.fail())
+            {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            cout<<"You have entered wrong input"<<endl;
+            cout<<"Please enter again."<<endl;
+            cin>>w;
+            }
+            if(!cin.fail())
+            break;
+            }
+
+            for (int z =0; z<12;z++){
+                if (w-1 == z){
+                    month = listmonth[z];
+                    break;
+                }
+            }
             clearconsole();
+            cout <<"You have selected :"<< month<<endl;
 
         cout << "Dates available for booking are :"<<endl;
             for(int j = 0; j < line_num;j++){
                 cout << date_[j]<<"th "<<endl;
             }
-        cout << R"("Please select desired date (without "th"): )";
+        cout << R"(Please select desired date (without "th"): )";
         cin >> date_selected;
         if(date_selected == date_[0]){
             cout << date_[0]<<endl;
@@ -571,6 +669,7 @@ void Location :: fileIntoArray(string filename,string dest){
         }else{
             cout << "Invalid Choice! \n"<< "You will now be sent back to the Main Menu..."<<endl;
             Sleep(2000);
+            clearconsole();
             mainmenu();
         }
 
