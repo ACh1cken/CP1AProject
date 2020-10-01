@@ -57,10 +57,11 @@ class Report : virtual public booking, Location{
 };
 
 void newl(int x);//used in table
+void mainmenu();
 void booking::edit(){
 
     string newname;
-
+    string exitchoice;
     int count =1;
 
     int idd[9];
@@ -130,6 +131,13 @@ file.close();
 tempfile.close();
 remove("booking_detail.txt");
 rename("tempfile.txt","booking_detail.txt");
+cout << endl<<endl
+<< "Return to Main Menu? (Y/N)\n";
+cin >> exitchoice;
+if (exitchoice == "Y"|| exitchoice == "y"){
+    system("cls");
+    mainmenu();
+}
 }
 
 
