@@ -96,7 +96,15 @@ for(int i =0;i<9;i++){//loop
 newl(145);
 int id;
 cout<<"Enter Reference number"<<endl;
-cin>>id;
+while(!(cin >> id)){
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << "Invalid input. Returning to main menu..."<<endl;
+    Sleep(1000);
+    clearconsole();
+    mainmenu();
+    }
+
 
 for(z = 0;z<9;z++){
     if(id == idd[z]){
@@ -243,7 +251,10 @@ int choice;
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cout << endl;
-    cout << "Invalid input.  Try again: ";
+    cout << "Invalid input. Returning to main menu.";
+    Sleep(1200);
+    clearconsole();
+    mainmenu();
     }
     if(!cin.fail())
     break;
@@ -286,7 +297,7 @@ int choice;
         cout << "You will now exit the program...\n";
         Sleep(1250);
         clearconsole();
-        logo("thankyou.txt");
+        logo("thankyou.txt");//exit art located here
     }
     else
     {
