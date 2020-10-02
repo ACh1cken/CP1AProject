@@ -1,8 +1,5 @@
 edit
-ID input not verify input
+input invalid not back to menu
 
 add
-date can input any without verification.
-time can input any without verification.
-
-Ex: only have 8am, 5pm but key in 3pm still can accept.
+date input can put any number not verify
