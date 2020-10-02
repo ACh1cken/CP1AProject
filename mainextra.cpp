@@ -165,7 +165,7 @@ void booking::deleteUser(){
         while (infile >>idd[i]>>namee[i]>>airlinee[i]>>locationn[i]>>monthh[i]>>date[i]>>timee[i]){
             if (refno != idd[i] ){
                 tmpfile<<idd[i]<<" "<<namee[i]<<" "<<airlinee[i]<<" "<<locationn[i]<<" "<<monthh[i]<<" "<<date[i]<<" "<<timee[i]<<""<<endl;
-                
+
             }else {
                 k = i;
                 cout << "Removed user : "<<namee[k]<<endl;
@@ -187,7 +187,7 @@ void booking::deleteUser(){
     system("cls");
     mainmenu();
     }
-    
+
 }
 
 void clearconsole(){//Clear terminal
@@ -618,7 +618,7 @@ void Location :: fileIntoArray(string filename,string dest){
             }
             cout << "Please select desired month: ";
             cin >> w;
-            
+
             while(1)
             {
             if(cin.fail())
@@ -749,6 +749,7 @@ void booking::airline_select()
 
 void booking::ticket_display()
 {
+  string exitchoice;
     cout << "Enter Reference No. : ";
     cin >> user_input;
     ifstream booking_detail("booking_detail.txt");
@@ -768,11 +769,19 @@ void booking::ticket_display()
                         cout << "Date : " << month << "/" << date_selected << endl;
                         cout << "Time : " << time_selected << endl;
                     }
+
                 }
             }
             booking_detail.close();
         }
         else cout << "Unable to open file";
+        cout << endl<<endl
+        << "Return to Main Menu? (Y/N)\n";
+        cin >> exitchoice;
+        if (exitchoice == "Y"|| exitchoice == "y"){
+            system("cls");
+            mainmenu();
+        }
 }
 
 
